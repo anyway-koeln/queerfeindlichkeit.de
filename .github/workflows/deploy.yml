@@ -39,4 +39,4 @@ jobs:
         with:
           email: thomas.rosen@me.com
           build_dir: build
-          # cname: subdomain.main.tld
+          cname: queerfeindlichkeit.qiekub.org

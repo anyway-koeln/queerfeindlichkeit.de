@@ -1,0 +1,10 @@
+header {
+    background: var(--secondary-dark);
+    text-align: center;
+}
+
+header .logo{
+    max-height: 128px;
+    max-width: 100%;
+    padding: 64px;
+}

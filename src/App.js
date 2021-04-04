@@ -8,6 +8,7 @@ function App() {
       <Helmet>
         <title>QueerFeindlichkeit</title>
         <link rel="canonical" href="https://queerfeindlichkeit.de/" />
+        <meta property="og:url" content="https://queerfeindlichkeit.de/" />
         <meta name="description" content="Hier entsteht ein Antidiskriminierungsprojekt des anyway Köln zum Thema Queerfeindlichkeit." />
       </Helmet>
 

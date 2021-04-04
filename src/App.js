@@ -16,6 +16,7 @@ const meta = {
 
 function App() {
   const title = meta.site_name // Maximum length 60-70 characters.
+
   return (
     <>
       <Helmet

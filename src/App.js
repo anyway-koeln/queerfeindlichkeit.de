@@ -2,11 +2,16 @@ import { Helmet } from 'react-helmet-async'
 import Header from './components/Header.js'
 import Rainbow from './components/Rainbow.js'
 
+import logo512 from './images/logo512.png'
+import logo_wide2048 from './images/logo_wide2048.png'
+
 const meta = {
   language: 'de',
   site_name: 'QueerFeindlichkeit',
   description: 'Hier entsteht ein Antidiskriminierungsprojekt des anyway Köln zum Thema Queerfeindlichkeit.', // No longer than 155 characters.
   canonical: 'https://queerfeindlichkeit.de/',
+  coverphoto: logo_wide2048,
+  logo: logo512, // The image must be 112x112px, at minimum.
 }
 
 function App() {
@@ -24,7 +29,15 @@ function App() {
         {/* Schema.org markup for Google */}
         <meta itemprop="name" content={title} />
         <meta itemprop="description" content={meta.description} />
-        {/* <meta itemprop="image" content="" /> */}
+        <meta itemprop="image" content={meta.coverphoto} />
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "${meta.canonical}",
+            "logo": "${meta.logo}"
+          }`}
+        </script>
         
         {/* Twitter:
         https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
@@ -35,7 +48,7 @@ function App() {
         <meta property="twitter:description" content={meta.description} />
         <meta property="twitter:site" content="@anyway_koeln" />
         <meta property="twitter:creator" content="@anyway_koeln" /> {/* twitter:creator could be the users twitter handle, who created an article. */}
-        {/* <meta property="twitter:image" content="" /> */}
+        <meta property="twitter:image" content={meta.coverphoto} />
 
         {/* Facebook: */}
         <meta property="og:title" content={title} />
@@ -47,7 +60,7 @@ function App() {
         {/* <meta property="article:modified_time" content="2013-09-16T19:08:47+01:00" /> */}
         {/* <meta property="article:section" content="Article Section" /> */}
         {/* <meta property="article:tag" content="Article Tag" /> */}
-        {/* <meta property="og:image" content="" /> */}
+        <meta property="og:image" content={meta.coverphoto} />
         
         {/* Pinterest: */}
         <meta name="pinterest-rich-pin" content="true" />

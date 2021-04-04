@@ -5,6 +5,6 @@ header {
 
 header .logo{
     max-height: 128px;
-    max-width: 100%;
+    max-width: calc(100% - 128px);
     padding: 64px;
 }

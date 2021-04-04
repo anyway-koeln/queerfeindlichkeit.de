@@ -50,7 +50,7 @@ function App() {
         {/* <meta property="og:image" content="" /> */}
         
         {/* Pinterest: */}
-        <meta name="pinterest-rich-pin" content="false" />
+        <meta name="pinterest-rich-pin" content="true" />
       </Helmet>
 
       <Header />

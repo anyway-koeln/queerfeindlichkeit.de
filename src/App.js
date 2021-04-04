@@ -82,10 +82,12 @@ function App() {
       </Helmet>
 
       <Header />
-
-      <p style={{textAlign: 'center', height: '50vh', margin: '64px 0'}}>
-        Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
-      </p>
+      
+      <main id="main">
+        <p style={{textAlign: 'center', height: '50vh', margin: '64px 0'}}>
+          Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
+        </p>
+      </main>
 
       <Rainbow />
 

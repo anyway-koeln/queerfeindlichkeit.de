@@ -14,6 +14,19 @@ const meta = {
   logo: logo512, // The image must be 112x112px, at minimum.
 }
 
+/*
+
+Metadata Validators:
+https://developers.facebook.com/tools/debug
+https://search.google.com/structured-data/testing-tool/
+https://search.google.com/test/rich-results
+https://developers.pinterest.com/tools/url-debugger/
+https://cards-dev.twitter.com/validator
+
+Metadata Infos:
+https://developers.google.com/search/docs/guides/search-gallery
+*/
+
 function App() {
   const title = meta.site_name // Maximum length 60-70 characters.
 

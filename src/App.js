@@ -52,7 +52,7 @@ function App() {
             "logo": "${meta.logo}"
           }`}
         </script>
-        
+
         {/* Twitter:
         https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
         */}
@@ -76,13 +76,13 @@ function App() {
         {/* <meta property="article:section" content="Article Section" /> */}
         {/* <meta property="article:tag" content="Article Tag" /> */}
         <meta property="og:image" content={meta.coverphoto} />
-        
+
         {/* Pinterest: */}
         <meta name="pinterest-rich-pin" content="true" />
       </Helmet>
 
       <Header />
-      
+
       <main id="main">
         <p style={{textAlign: 'center', height: '50vh', margin: '64px 0'}}>
           Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.

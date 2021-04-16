@@ -1,9 +1,16 @@
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { IonButton } from '@ionic/react'
+
+import classes from './App.module.css'
+
 import Header from './components/Header.js'
 import Rainbow from './components/Rainbow.js'
+import MapChooser from './components/MapChooser.js'
 
 import logo512 from './images/logo512.png'
 import logo_wide2048 from './images/logo_wide2048.png'
+
 
 const meta = {
   language: 'de',
@@ -27,7 +34,39 @@ Metadata Infos:
 https://developers.google.com/search/docs/guides/search-gallery
 */
 
+function useData(region) {
+  const [data, setData] = useState(null)
+
+  useEffect(function () {
+    console.log('setData')
+    setTimeout(() => {
+      setData({
+        region,
+        articles: [
+          { id: Math.random(), title: 'Artikel 1', date_published: new Date() },
+          { id: Math.random(), title: 'Artikel 2', date_published: new Date() },
+          { id: Math.random(), title: 'Artikel 3', date_published: new Date() },
+          { id: Math.random(), title: 'Artikel 4', date_published: new Date() },
+          { id: Math.random(), title: 'Artikel 5', date_published: new Date() },
+          { id: Math.random(), title: 'Artikel 6', date_published: new Date() },
+        ],
+      })
+    }, 100)
+  }, [region])
+
+  return [data]
+}
+
+function StoryRow({ title, date_published }) {
+  return <div className={classes.StoryRow}>
+    <div className="subtitle1">{title}</div>
+    <div className="body2">{date_published.toISOString()}</div>
+  </div>
+}
+
 function App() {
+  const [region, setRegion] = useState({ ISO_A3: 'DEU' })
+  const [data] = useData(region)
   const title = meta.site_name // Maximum length 60-70 characters.
 
   return (
@@ -83,14 +122,52 @@ function App() {
 
       <Header />
 
+      <p style={{textAlign: 'center', margin: '64px 0'}}>
+        Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
+      </p>
+
       <main id="main">
-        <p style={{textAlign: 'center', height: '50vh', margin: '64px 0'}}>
-          Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
-        </p>
+        <div className={classes.cards_collection}>
+
+          <div className={classes.card + ' ' + classes.full_width}>
+            <MapChooser
+              selectedRegion={region}
+              setRegion={setRegion}
+              style={{ width: '100%' }}
+            />
+          </div>
+
+          {
+            data !== null
+              ? (<>
+                <div className={classes.card + ' ' + classes.scrollable}>
+                  {data.articles.map(article => <StoryRow key={article.id} title={article.title} date_published={article.date_published} />)}
+                </div>
+
+                <div className={classes.card + ' ' + classes.scrollable}>
+                  <pre>{JSON.stringify(data, null, 2)}</pre>
+                </div>
+              </>)
+              : null
+          }
+
+          <div className={classes.card}>
+            <p>Sample Chart</p>
+          </div>
+
+          <div className={classes.card + ' ' + classes.full_width}>
+            <p style={{ textAlign: 'center' }}>
+              <IonButton>View more Articles</IonButton>
+              <IonButton>Download Data</IonButton>
+            </p>
+          </div>
+
+        </div>
+
+
       </main>
 
-      <Rainbow />
-
+      <Rainbow style={{ marginTop: '128px' }}/>
     </>
   )
 }

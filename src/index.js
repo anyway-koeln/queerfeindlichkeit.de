@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { setupConfig } from '@ionic/react'
 import { HelmetProvider } from 'react-helmet-async'
+
+
+setupConfig({
+    mode: 'ios',
+})
 
 ReactDOM.render(
   <React.StrictMode>

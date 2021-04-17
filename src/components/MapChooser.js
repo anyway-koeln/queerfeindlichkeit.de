@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from 'react'
+import React, { useState, memo } from 'react'
 import {
   ZoomableGroup,
   ComposableMap,
@@ -12,19 +12,32 @@ import classes from './MapChooser.module.css'
 
 const worldMapDataUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
 
+const minZoom = 0.1
+const maxZoom = 10
+
 const MapChart = ({ styles, selectedRegion, setRegion }) => {
   const [tooltipContent, setTooltipContent] = useState('')
-  const [zoom, setZoom] = useState(2)
+  const [position, setPosition] = useState({ coordinates: [10.447683, 51.163375], zoom: 2 })
 
   selectedRegion = !!selectedRegion ? selectedRegion : {}
+  function handleZoomIn() {
+    if (position.zoom >= maxZoom) {
+      return
+    }
+    setPosition(pos => ({ ...pos, zoom: pos.zoom * 2 }))
+  }
 
-  const zoomIn = useCallback(() => {
-    setZoom(zoom + 1)
-  }, [zoom, setZoom])
+  function handleZoomOut() {
+    if (position.zoom <= minZoom) {
+      return
+    }
+    setPosition(pos => ({ ...pos, zoom: pos.zoom / 2 }))
+  }
 
-  const zoomOut = useCallback(() => {
-    setZoom(zoom - 1)
-  }, [zoom, setZoom])
+  function handleMoveEnd(position) {
+    setPosition(position)
+  }
+
 
   return (
     <>
@@ -36,7 +49,13 @@ const MapChart = ({ styles, selectedRegion, setRegion }) => {
         width={1000}
         height={400}
       >
-        <ZoomableGroup zoom={zoom} maxZoom={zoom} minZoom={zoom} center={[10.447683, 51.163375]}>
+        <ZoomableGroup
+          zoom={position.zoom}
+          maxZoom={position.zoom}
+          minZoom={position.zoom}
+          center={position.coordinates}
+          onMoveEnd={handleMoveEnd}
+        >
           <Geographies geography={worldMapDataUrl}>
             {({ geographies }) =>
               geographies.map(geo => (
@@ -80,8 +99,8 @@ const MapChart = ({ styles, selectedRegion, setRegion }) => {
       <ReactTooltip>{tooltipContent}</ReactTooltip>
 
       <div className={classes.zoom_buttons}>
-        <IonButton onClick={zoomIn} disabled={zoom >= 10}>+</IonButton>
-        <IonButton onClick={zoomOut} disabled={zoom <= 1}>–</IonButton>
+        <IonButton onClick={handleZoomIn} disabled={position.zoom >= maxZoom}>+</IonButton>
+        <IonButton onClick={handleZoomOut} disabled={position.zoom <= minZoom}>–</IonButton>
       </div>
     </>
   )

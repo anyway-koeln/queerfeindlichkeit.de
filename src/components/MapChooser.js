@@ -38,7 +38,6 @@ const MapChart = ({ styles, selectedRegion, setRegion }) => {
     setPosition(position)
   }
 
-
   return (
     <>
       <ComposableMap

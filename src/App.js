@@ -102,6 +102,9 @@ function App() {
         Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
       </p>
 
+      <p style={{ textAlign: 'center', margin: '64px 0' }}>
+        <Link to="/">Home</Link> • <Link to="/blog">Blog</Link>
+      </p>
 
       <main id="main">
         <Switch>

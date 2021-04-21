@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom'
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react'
 
 function Article({ article }) {
   return (
+    <Link to={`/article/${article.id}`}>
       <IonCard style={{
         display: 'inline-block'
       }}>
@@ -10,6 +12,7 @@ function Article({ article }) {
           <IonCardTitle>{article.title}</IonCardTitle>
         </IonCardHeader>
       </IonCard>
+    </Link>
   )
 }
 

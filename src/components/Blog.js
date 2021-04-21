@@ -10,7 +10,7 @@ function Blog() {
       <h1>Blog</h1>
       {
         !!data
-        ? data.articles.map(article => <ArticleCard article={article} />)
+        ? data.articles.map(article => <ArticleCard key={article.id} article={article} />)
         : null
       }
     </>

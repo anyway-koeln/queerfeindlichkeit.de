@@ -14,6 +14,8 @@ import Rainbow from './components/Rainbow.js'
 
 import Home from './components/Home.js'
 import Blog from './components/Blog.js'
+import Article from './components/Article.js'
+import Story from './components/Story.js'
 
 import logo512 from './images/logo512.png'
 import logo_wide2048 from './images/logo_wide2048.png'
@@ -108,6 +110,8 @@ function App() {
 
       <main id="main">
         <Switch>
+          <Route path="/story/:id" children={<Story />} />
+          <Route path="/article/:id" children={<Article />} />
           <Route path="/blog" children={<Blog />} />
           <Route path="/" exact={true} children={<Home />} />
         </Switch>

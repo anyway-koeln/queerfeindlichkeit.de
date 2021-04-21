@@ -221,3 +221,6 @@ a {
   color: var(--secondary);
   text-decoration: none;
 }
+a:hover {
+  text-decoration: underline;
+}

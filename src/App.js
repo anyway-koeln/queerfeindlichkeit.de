@@ -118,6 +118,7 @@ function App() {
           <Route path="/blog/:id" children={<Article />} />
           <Route path="/blog" children={<Blog />} />
           <Route path="/" exact={true} children={<Home />} />
+          <Route path="*" children={<Redirect to="/" />} />
         </Switch>
       </main>
 

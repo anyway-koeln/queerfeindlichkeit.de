@@ -1,7 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 
-import classes from './App.module.css'
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +7,8 @@ import {
   Link
 } from "react-router-dom"
 
+// import madison from './madison.jpg'
+// import Section from './components/Section.js'
 import Header from './components/Header.js'
 import Rainbow from './components/Rainbow.js'
 

@@ -34,7 +34,7 @@ function Home() {
             data !== null
               ? (<>
                 <div className={classes.card + ' ' + classes.scrollable}>
-                  {data.articles.map(article => <StoryRow key={article.id} title={article.title} date_published={article.date_published} />)}
+                  {data.stories.map(story => <StoryRow key={story.id} title={story.title} date_published={story.date_published} />)}
                 </div>
 
                 <div className={classes.card + ' ' + classes.scrollable}>

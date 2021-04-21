@@ -219,4 +219,5 @@ button{
 
 a {
   color: var(--secondary);
+  text-decoration: none;
 }

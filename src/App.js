@@ -2,6 +2,13 @@ import { Helmet } from 'react-helmet-async'
 
 import classes from './App.module.css'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
+
 import Header from './components/Header.js'
 import Rainbow from './components/Rainbow.js'
 
@@ -37,7 +44,8 @@ function App() {
   const title = meta.site_name // Maximum length 60-70 characters.
 
   return (
-    <>
+    <Router>
+
       <Helmet
         htmlAttributes={{ lang: meta.language }}
       >
@@ -95,11 +103,14 @@ function App() {
 
 
       <main id="main">
-        <Home />
+        <Switch>
+          <Route path="/" exact={true} children={<Home />} />
+        </Switch>
       </main>
 
       <Rainbow style={{ marginTop: '128px' }}/>
-    </>
+
+    </Router>
   )
 }
 

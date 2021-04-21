@@ -3,7 +3,7 @@ import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/re
 
 function Article({ article }) {
   return (
-    <Link to={`/article/${article.id}`}>
+    <Link to={`/blog/${article.id}`}>
       <IonCard style={{
         display: 'inline-block'
       }}>

@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async'
+import { IonButton } from '@ionic/react'
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  NavLink,
 } from "react-router-dom"
 
 // import madison from './madison.jpg'
@@ -104,9 +105,10 @@ function App() {
         Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
       </p>
 
-      <p style={{ textAlign: 'center', margin: '64px 0' }}>
-        <Link to="/">Home</Link> • <Link to="/blog">Blog</Link>
-      </p>
+      <nav style={{ textAlign: 'center', margin: '64px 0' }}>
+        <NavLink to="/"><IonButton>Home</IonButton></NavLink>
+        <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
+      </nav>
 
       <main id="main">
         <Switch>

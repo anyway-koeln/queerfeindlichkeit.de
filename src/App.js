@@ -113,7 +113,7 @@ function App() {
       <main id="main">
         <Switch>
           <Route path="/story/:id" children={<Story />} />
-          <Route path="/article/:id" children={<Article />} />
+          <Route path="/blog/:id" children={<Article />} />
           <Route path="/blog" children={<Blog />} />
           <Route path="/" exact={true} children={<Home />} />
         </Switch>

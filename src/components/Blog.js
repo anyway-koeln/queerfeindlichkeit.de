@@ -1,0 +1,20 @@
+
+import ArticleCard from './ArticleCard.js'
+import useData from '../hooks/useData.js'
+
+function Blog() {
+  const [data] = useData()
+
+  return (
+    <>
+      <h1>Blog</h1>
+      {
+        !!data
+        ? data.articles.map(article => <ArticleCard article={article} />)
+        : null
+      }
+    </>
+  )
+}
+
+export default Blog

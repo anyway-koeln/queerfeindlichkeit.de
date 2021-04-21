@@ -13,6 +13,7 @@ import Header from './components/Header.js'
 import Rainbow from './components/Rainbow.js'
 
 import Home from './components/Home.js'
+import Blog from './components/Blog.js'
 
 import logo512 from './images/logo512.png'
 import logo_wide2048 from './images/logo_wide2048.png'
@@ -104,6 +105,7 @@ function App() {
 
       <main id="main">
         <Switch>
+          <Route path="/blog" children={<Blog />} />
           <Route path="/" exact={true} children={<Home />} />
         </Switch>
       </main>

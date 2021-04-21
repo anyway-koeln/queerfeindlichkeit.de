@@ -1,14 +1,15 @@
+import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react'
+
 function Article({ article }) {
   return (
-    <div style={{
-      display: 'inline-block',
-      width: '256px',
-      background: '#eee',
-      margin: '8px',
-    }}>
-      <h3>{article.title}</h3>
-      <p>{article.date_published.toISOString()}</p>
-    </div>
+      <IonCard style={{
+        display: 'inline-block'
+      }}>
+        <IonCardHeader>
+          <IonCardSubtitle>{article.date_published.toISOString()}</IonCardSubtitle>
+          <IonCardTitle>{article.title}</IonCardTitle>
+        </IonCardHeader>
+      </IonCard>
   )
 }
 

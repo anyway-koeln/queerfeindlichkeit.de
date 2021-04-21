@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom'
+
 import classes from './Header.module.css'
 import { ReactComponent as LogoOnDark } from '../images/logo-on-dark.svg'
 
 function Header() {
     return (
         <header>
-            <LogoOnDark className={classes.logo} />
+            <Link to="/">
+                <LogoOnDark className={classes.logo} />
+            </Link>
         </header>
     )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { IonButton } from '@ionic/react'
+import { Link } from 'react-router-dom'
 
 import classes from './Home.module.css'
 
@@ -7,11 +8,13 @@ import MapChooser from './MapChooser.js'
 
 import useData from '../hooks/useData.js'
 
-function StoryRow({ title, date_published }) {
-  return <div className={classes.StoryRow}>
-    <div className="subtitle1">{title}</div>
-    <div className="body2">{date_published.toISOString()}</div>
-  </div>
+function StoryRow({ id, title, date_published }) {
+  return <Link to={`/story/${id}`}>
+    <div className={classes.StoryRow}>
+      <div className="subtitle1">{title}</div>
+      <div className="body2">{date_published.toISOString()}</div>
+    </div>
+  </Link>
 }
 
 function Home() {
@@ -34,7 +37,7 @@ function Home() {
             data !== null
               ? (<>
                 <div className={classes.card + ' ' + classes.scrollable}>
-                  {data.stories.map(story => <StoryRow key={story.id} title={story.title} date_published={story.date_published} />)}
+                  {data.stories.map(story => <StoryRow key={story.id} id={story.id} title={story.title} date_published={story.date_published} />)}
                 </div>
 
                 <div className={classes.card + ' ' + classes.scrollable}>

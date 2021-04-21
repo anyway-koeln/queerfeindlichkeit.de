@@ -1,0 +1,9 @@
+footer {
+    padding: 16px;
+    background: var(--secondary-dark);
+    color: var(--on-secondary);
+}
+
+footer a {
+    color: var(--on-secondary);
+}

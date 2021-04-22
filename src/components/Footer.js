@@ -10,7 +10,7 @@ function Footer() {
       <a href="https://www.anyway-koeln.de/">Dies ist ein Projekt des anyway Köln</a><br />
       <a href="https://www.anyway-koeln.de/kontakt/">Kontakt</a><br />
       <a href="https://www.anyway-koeln.de/impressum/">Impressum</a><br />
-      <a href="https://www.anyway-koeln.de/datenschutz/">Datenschunk</a><br />
+      <a href="https://www.anyway-koeln.de/datenschutz/">Datenschutz</a><br />
     </footer>
   )
 }

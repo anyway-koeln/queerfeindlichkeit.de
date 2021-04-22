@@ -5,7 +5,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { setupConfig } from '@ionic/react'
 import { HelmetProvider } from 'react-helmet-async'
-
+import { BrowserRouter as Router } from 'react-router-dom'
 
 setupConfig({
     mode: 'ios',
@@ -14,7 +14,9 @@ setupConfig({
 ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
-      <App />
+      <Router basemname={`/${process.env.PUBLIC_URL}`}>
+        <App />
+      </Router>
     </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')

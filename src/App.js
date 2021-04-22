@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import { IonButton } from '@ionic/react'
 
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
@@ -50,7 +49,7 @@ function App() {
   const title = meta.site_name // Maximum length 60-70 characters.
 
   return (
-    <Router>
+    <>
 
       <Helmet
         htmlAttributes={{ lang: meta.language }}
@@ -126,7 +125,7 @@ function App() {
       <Rainbow style={{ marginTop: '128px' }}/>
 
       <Footer />
-    </Router>
+    </>
   )
 }
 

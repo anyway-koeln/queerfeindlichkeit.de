@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 import { IonButton } from '@ionic/react'
 
+import './App.module.css'
+
 import {
   Switch,
   Route,

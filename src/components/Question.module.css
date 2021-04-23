@@ -1,9 +1,24 @@
-.question input {
-  height: 32px;
-  margin: 16px;
-  border: 1px solid black;
+.question input,
+.question textarea {
   display: block;
+  height: 32px;
   width: calc(100% - 32px);
+  margin: 16px 0;
+  padding: 8px 16px;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: black;
+  border-radius: 8px 8px 0 0;
+  outline: none;
+}
+.question textarea {
+  max-width: 100%;
+  min-height: 256px;
+  resize: vertical;
+}
+.question input:focus,
+.question textarea:focus {
+  border-color: #3880ff;
 }
 
 .option {

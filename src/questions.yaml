@@ -11,7 +11,7 @@ questions:
       de: Was ist der Ort des Geschehens gewesen?
     input:
       type: choice
-      required: true
+      # required: true
       write_in: true
       options:
         home:
@@ -78,7 +78,7 @@ questions:
       de: Du kannst mehrere Gewaltformen ankreuzen.
     input:
       type: choice
-      required: true
+      # required: true
       select_multiple: true # TODO:
       write_in: true
       options:

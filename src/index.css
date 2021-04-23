@@ -75,6 +75,7 @@ h1,
   line-height: 1;
   font-weight: 600;
   letter-spacing: -.00144em;
+  color: var(--secondary-dark);
 }
 h2,
 .typography-section-headline {
@@ -82,6 +83,7 @@ h2,
   line-height: 1.05556;
   font-weight: 600;
   letter-spacing: -.00086em;
+  color: var(--secondary-dark);
 }
 h3.elevated,
 .typography-headline-elevated {
@@ -89,6 +91,7 @@ h3.elevated,
   line-height: 1.0625;
   font-weight: 600;
   letter-spacing: -.009em;
+  color: var(--secondary-dark);
 }
 h3,
 .typography-headline {
@@ -96,6 +99,7 @@ h3,
   line-height: 1.08349;
   font-weight: 600;
   letter-spacing: -.003em;
+  color: var(--secondary-dark);
 }
 .subtitle1,
 .typography-eyebrow {
@@ -103,6 +107,7 @@ h3,
   line-height: 1.16667;
   font-weight: 600;
   letter-spacing: .009em;
+  color: var(--secondary-dark);
 }
 .body1,
 .typography-product-lockup {
@@ -110,6 +115,7 @@ h3,
   line-height: 1.381;
   font-weight: 400;
   letter-spacing: .011em;
+  color: var(--secondary-dark);
 }
 p,
 pre,
@@ -119,6 +125,7 @@ pre,
   font-weight: 400;
   letter-spacing: -.022em;
   font-style: normal;
+  color: var(--secondary-dark);
 }
 
 /* .card {

@@ -8,7 +8,8 @@
 
   display: grid;
   overflow: hidden;
-  grid-template-rows: min-content auto min-content;
+  /* grid-template-rows: min-content auto min-content; */ /* min-content is to modern for safari */
+  grid-template-rows: 48px auto 84.8px;
   grid-template-columns: auto;
 }
 

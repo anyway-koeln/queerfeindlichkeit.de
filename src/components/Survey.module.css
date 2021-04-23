@@ -8,8 +8,29 @@
 
   display: grid;
   overflow: hidden;
-  grid-template-rows: auto min-content;
+  grid-template-rows: min-content auto min-content;
   grid-template-columns: auto;
+}
+
+.survey .progress {
+  position: relative;
+  margin: 32px 32px 0 32px;
+  height: 16px;
+  background-color: var(--primary, grey);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+.survey .progress:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary, black);
+  width: var(--width);
+  border-radius: 7px;
+  transition: width 0.2s ease;
 }
 
 .survey .content {

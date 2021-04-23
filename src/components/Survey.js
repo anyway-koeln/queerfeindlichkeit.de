@@ -93,6 +93,10 @@ function Survey() {
 
   return (
     <div className={classes.survey}>
+      <div className={classes.progress} style={{
+        '--width': `${((currentQuestionsIndex) / questions.length) * 100}%`,
+        opacity: (currentQuestionsIndex === 0 ? 0 : 1)
+      }} />
       <div className={classes.content}>
         <div className={classes.contentWrapper}>
           {

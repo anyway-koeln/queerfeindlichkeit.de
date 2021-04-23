@@ -1,0 +1,158 @@
+questions:
+  where_happened:
+    question:
+      de: Wo ist der Vorfall passiert?
+    description:
+      de: Es erscheint am Ende nur ein ungenauer Bereich. (Land, Postleitzahl, Kreis, …)
+    input:
+      type: short_text
+  type_of_place:
+    question:
+      de: Was ist der Ort des Geschehens gewesen?
+    input:
+      type: choice
+      # required: true
+      write_in: true
+      options:
+        home:
+          de: Zuhause
+        street:
+          de: offene Straße, Plätze, Parks und Natur
+        transport:
+          de: ÖPNV (Straßenbahn, Bus, Bahn, U-Bahn, Haltestellen, Bahnhöfe) & andere Transportmittel (Taxis, Mitfahrgelegenheit etc.)
+        school:
+          de: Bildungseinreichtung (Schule, Uni, Berufsschule, …)
+        work:
+          de: Arbeit
+        going_out:
+          de: Gastronomie, Bar & Club
+        event:
+          de: Events (Konzerte, Festivals, Straßen- und Volksfester, Sportveranstaltungen etc.)
+        health_service:
+          de: Gesundheitseinrichtung (Krankenhaus, Arztpraxis, Rettungswagen etc.)
+        state_service:
+          de: Behörden, Verwaltungseinrichtungen, Bürgerservices und -büros
+        sport:
+          de: Sporteinrichtung und -vereine
+        youthcenter:
+          de: Jugendeinrichtung (Jugendtreff, Jugendzentrum, Musikschule, Kunstschule, Medienprojekte...)
+  how_many_victims:
+    question:
+      de: Wie viele Personen waren von dem Vorfall betroffen?
+    input:
+      type: number
+  how_many_offenders:
+    question:
+      de: Wie viele Täter:innen gab es?
+    input:
+      type: number
+  type_of_offenders:
+    question:
+      de: Wer waren die Täter:innen?
+    description:
+      de: Bitte führe hier alle Personengruppen auf, die als Täter:innen beteiligt waren, z.B. Schule (Lehrer:in, Mitschüler:in, Sozialarbeiter:in, etc), Sportverein (Trainer:in, Mitspieler:in, Schiedsrichter:in ...), Familie (Vater, Mutter, Geschwister, Oma, Opa...) etc.
+    input:
+      type: short_text
+  length_of_violence:
+    question:
+      de: Wie lange dauerte die Tat?
+    description:
+      de: Eine Tat definiert sich dadurch, dass der Ort und die Täter:innen dieselben sind. Eine Tat kann sich einmalig (z.B. Angriff auf der Straße) ereignen oder über eine längere Zeit andauern (z.B. Mobbing in der Schule)
+    input:
+      type: choice
+      options:
+        once:
+          de: einmalig
+        days:
+          de: mehrere Tage
+        weeks:
+          de: mehere Wochen
+        months:
+          de: mehrere Monate
+        years:
+          de: mehrere Jahre
+  type_of_violence:
+    question:
+      de: Welche Arten von Gewalt kamen zur Anwendung?
+    description:
+      de: Du kannst mehrere Gewaltformen ankreuzen.
+    input:
+      type: choice
+      # required: true
+      select_multiple: true # TODO:
+      write_in: true
+      options:
+        verbal:
+          de: Verbale Gewalt (Beschimpfung, Beleidigung, Verleumdung, ...)
+        psychological:
+          de: Psychische Gewalt (Ausgrenzung, Drohen, unter Druck setzen, Mobbing, Schikane, Kontaktverbote zu bestimmten Personen, Isolation, etc.)
+        physical:
+          de: Körperliche Gewalt
+        economic:
+          de: Ökonomische Gewalt (z.B. Taschengeldentzug, Handy weggenommen)
+        sexual:
+          de: Sexualisierte Gewalt (Nötigung zu sexuellen Handlungen etc.)
+        structural:
+          de: Strukturelle Gewalt (Strukturelle Gewalt hindert Individuen daran, ihre Potenziale und Möglichkeiten voll zu entfalten. Sie wird nicht direkt von einem:r Täter:in ausgeübt, sondern hat systemischen Charakter, z.B. Wissen über sexuelle Orientierung geschlecht. Identität nicht in der Schule vermitteln, fehlende Toiletten für das 3. Geschlecht, Mangel an geschlechterdiverse Sprache)
+  what_happened:
+    question:
+      de: Was ist dir genau passiert und wie hast du dich dabei gefühlt?
+    description:
+      de: Hier kannst du den Vorfall mit deinen Worten beschreiben. Du kannst sehr gern ausführlich und detailliert sein. Bitte führe, wenn möglich, auch auf, was es für Konsequenzen gab, z.B. für Täter:innen. Namen von Personen und Institutionen werden im Nachhinein anonymisiert.
+    input:
+      type: long_text
+  where_reported:
+    question:
+      de: Wo hast du den Vorfall gemeldet?
+    input:
+      type: choice
+      write_in: true
+      options:
+        nowhere:
+          de: Nirgends gemeldet.
+        just_talked:
+          de: Nein, aber mit anderen Personen darüber geredet (z.B. Freunde, Familie, Bekannte)
+        police:
+          de: Bei Polizei.
+        state_authority:
+          de: Bei einer Behörde (z.B. Jugendamt, Schulamt, Antidiskriminierungsstelle)
+        pedagogical_staff:
+          de: Bei pädagogischen oder betreuenden Personal (z.B. Lehrer:in, Sozialarbeiter:in, Trainer:in)
+        work:
+          de: Auf der Arbeit (z.B. Chef, Personabteilung, Mitarbeitendenvertretung, Diversitystelle)
+        victim_support:
+          de: Bei Opferhilfen (z.B. Opferberatung, Überfalltelefon, Anti-Gewalt-Stellen)
+        owner:
+          de: Eigentümer:inn / Mitarbeiter:innen der Einrichtung.
+  age:
+    question:
+      de: Wie alt warst du zur Tat bzw. zum Beginn der Tat?
+    description:
+      de: Wenn du es nicht weißt, dann lass das Feld frei.
+    input:
+      type: number
+  mental_stress:
+    question:
+      de: Wie sehr hat dich der Vorfall belastet?
+    input:
+      type: choice
+      options:
+        -1:
+          de: Weiß nicht
+        0:
+          de: Gar nicht
+        0.25:
+          de: Wenig
+        0.5:
+          de: Mittelmäßig
+        0.75:
+          de: Stark
+        1:
+          de: Sehr stark
+  feedback:
+    question:
+      de: Wie findest du den Fragebogen?
+    description:
+      de: Gibt es etwas, was wir nicht gefragt haben, du aber gern mitteilen wolltest? Waren einige Fragen für dich unverständlich oder wusstest du manchmal nicht, was du tun solltest? Hier kannst du uns Feedback zum Fragebogen geben. Dieses schätzen wir sehr, weil der Fragebogen ein Testlauf für unser Projekt ist.
+    input:
+      type: long_text

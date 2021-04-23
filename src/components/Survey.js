@@ -73,7 +73,7 @@ function Survey() {
     }
   }, [setCurrentQuestionsIndex, currentQuestionsIndex, questions])
 
-  useKeyPress(['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'], event => {
+  useKeyPress(['ArrowRight', 'ArrowLeft'], event => {
     console.log('event', event)
     if (event.target.nodeName === 'BODY') {
       if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {

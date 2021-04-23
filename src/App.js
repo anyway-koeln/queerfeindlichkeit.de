@@ -120,7 +120,7 @@ function App() {
           <nav style={{ textAlign: 'center', margin: '64px 0' }}>
             <NavLink to="/"><IonButton>Home</IonButton></NavLink>
             <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
-            <NavLink to="/survey"><IonButton>Survey</IonButton></NavLink>
+            <NavLink to="/survey"><IonButton>Vorfall melden</IonButton></NavLink>
           </nav>
         </>
       }

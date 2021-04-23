@@ -119,6 +119,10 @@ h3,
 }
 p,
 pre,
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea,
 .body2{
   font-size: 17px;
   line-height: 1.47059;

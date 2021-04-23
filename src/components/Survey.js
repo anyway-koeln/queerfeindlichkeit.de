@@ -92,7 +92,6 @@ function Survey() {
 
   return (
     <>
-      <h1>Vorfall melden</h1>
       {
         !!currentQuestion
         ? <>

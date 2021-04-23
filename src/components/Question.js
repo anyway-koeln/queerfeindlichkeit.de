@@ -148,6 +148,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         !!input.write_in
           ? <div>
             <input
+              ref={inputRef}
               type="text"
               placeholder="Enter a short text as your own answer…"
               onChange={storeValue}

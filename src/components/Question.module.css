@@ -1,0 +1,11 @@
+.question input {
+  height: 32px;
+  margin: 16px;
+  border: 1px solid black;
+  display: block;
+  width: calc(100% - 32px);
+}
+
+.option {
+  display: block;
+}

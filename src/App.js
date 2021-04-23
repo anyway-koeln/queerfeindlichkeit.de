@@ -8,6 +8,7 @@ import {
   Route,
   NavLink,
   Redirect,
+  useRouteMatch,
 } from "react-router-dom"
 
 // import madison from './madison.jpg'
@@ -20,6 +21,7 @@ import Home from './components/Home.js'
 import Blog from './components/Blog.js'
 import Article from './components/Article.js'
 import Story from './components/Story.js'
+import Survey from './components/Survey.js'
 
 import logo512 from './images/logo512.png'
 import logo_wide2048 from './images/logo_wide2048.png'
@@ -48,6 +50,9 @@ https://developers.google.com/search/docs/guides/search-gallery
 */
 
 function App() {
+  let surveyIsOpen = useRouteMatch("/survey")
+  surveyIsOpen = surveyIsOpen !== null
+
   const title = meta.site_name // Maximum length 60-70 characters.
 
   return (
@@ -104,17 +109,25 @@ function App() {
 
       <Header />
 
-      <p style={{textAlign: 'center', margin: '64px 0'}}>
-        Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
-      </p>
+      {
+        surveyIsOpen
+        ? null
+        : <>
+          <p style={{textAlign: 'center', margin: '64px 0'}}>
+            Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
+          </p>
 
-      <nav style={{ textAlign: 'center', margin: '64px 0' }}>
-        <NavLink to="/"><IonButton>Home</IonButton></NavLink>
-        <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
-      </nav>
+          <nav style={{ textAlign: 'center', margin: '64px 0' }}>
+            <NavLink to="/"><IonButton>Home</IonButton></NavLink>
+            <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
+            <NavLink to="/survey"><IonButton>Survey</IonButton></NavLink>
+          </nav>
+        </>
+      }
 
       <main id="main">
         <Switch>
+          <Route path="/survey" children={<Survey />} />
           <Route path="/story/:id" children={<Story />} />
           <Route path="/story" children={<Redirect to="/" />} />
           <Route path="/blog/:id" children={<Article />} />

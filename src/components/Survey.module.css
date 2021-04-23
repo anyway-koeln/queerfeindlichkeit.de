@@ -1,0 +1,30 @@
+.survey {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--surface, white);
+
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto min-content;
+  grid-template-columns: auto;
+}
+
+.survey .content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 32px;
+}
+.survey .content .contentWrapper {
+  width: 640px;
+  max-width: 100%;
+  margin: 64px auto;
+}
+
+.survey .actions {
+  background-color: var(--card, white);
+  color: var(--on-card, black);
+  padding: 16px 32px;
+}

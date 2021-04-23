@@ -3,6 +3,7 @@ import yaml from 'js-yaml'
 
 import { IonButton } from '@ionic/react'
 
+import classes from './Survey.module.css'
 import Question from './Question.js'
 import useKeyPress from '../hooks/useKeyPress.js'
 
@@ -91,27 +92,31 @@ function Survey() {
   const currentQuestion = questions[currentQuestionsIndex]
 
   return (
-    <>
-      {
-        !!currentQuestion
-        ? <>
-            <Question
-              key={currentQuestion._id}
-              onSubmit={handleChange}
-              defaultValue={answers[currentQuestion._id] || null}
-              {...currentQuestion}
-            />
-          </>
-        : <>
-            <p>Show summary and final submit button.</p>
-            <pre>{JSON.stringify(answers, null, 2)}</pre>
-          </>
-      }
-      <div style={{ marginTop: '32px' }}>
+    <div className={classes.survey}>
+      <div className={classes.content}>
+        <div className={classes.contentWrapper}>
+          {
+            !!currentQuestion
+            ? <>
+              <Question
+                key={currentQuestion._id}
+                onSubmit={handleChange}
+                defaultValue={answers[currentQuestion._id] || null}
+                {...currentQuestion}
+              />
+            </>
+            : <>
+                <p>Show summary and final submit button.</p>
+                <pre>{JSON.stringify(answers, null, 2)}</pre>
+              </>
+          }
+        </div>
+      </div>
+      <div className={classes.actions}>
         <IonButton disabled={currentQuestionsIndex <= 0} fill="outline" size="default" onClick={prevQuestion}>zurück</IonButton>
         <IonButton disabled={currentQuestionsIndex >= questions.length || currentQuestion.input.required} fill="outline" size="default" onClick={nextQuestion}>vor</IonButton>
       </div>
-    </>
+    </div>
   )
 }
 

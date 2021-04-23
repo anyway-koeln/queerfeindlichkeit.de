@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 import useKeyPress from '../hooks/useKeyPress.js'
 
 import { IonButton } from '@ionic/react'
@@ -11,6 +11,8 @@ abc = abc.split('')
 const keys2listen = ['Enter', ...abc, ...ABC]
 
 function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
+  const inputRef = useRef()
+
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : null
   const writeInValue = !!defaultValueObject ? defaultValueObject.write_in : null
 
@@ -83,17 +85,24 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     }
   }, [input, hasValue, onSubmit, _id, value])
 
+  useEffect(() => {
+    if (!!inputRef && !!inputRef.current && !hasValue) {
+      inputRef.current.focus()
+    }
+  }, [inputRef, hasValue])
+
   if (!(!!_id)) {
     return null
   }
 
   let input_component = null
   if (input.type === 'number') {
-    input_component = <input type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={writeInValue} />
+    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={writeInValue} />
   } else if (input.type === 'short_text') {
-    input_component = <input type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={writeInValue} />
+    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={writeInValue} />
   } else if (input.type === 'long_text') {
     input_component = <textarea
+      ref={inputRef}
       onChange={storeValue}
       onFocus={handleWriteInFocus}
       onBlur={handleWriteInBlur}

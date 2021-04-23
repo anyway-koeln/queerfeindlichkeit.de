@@ -9,7 +9,9 @@
   display: grid;
   overflow: hidden;
   /* grid-template-rows: min-content auto min-content; */ /* min-content is to modern for safari */
-  grid-template-rows: 48px auto 84.8px;
+  --progress-height: 48px;
+  --actions-height: 84.8px;
+  grid-template-rows: var(--progress-height) calc(100vh - calc(var(--progress-height) + var(--actions-height))) var(--actions-height);
   grid-template-columns: auto;
 }
 

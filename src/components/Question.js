@@ -5,7 +5,7 @@ import { IonButton } from '@ionic/react'
 
 import classes from './Question.module.css'
 
-let abc = 'abcdefjhmlnmnopqrstuvwxyz'
+let abc = 'abcdefghijklmnopqrstuvwxyz'
 const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Enter', ...abc, ...ABC]

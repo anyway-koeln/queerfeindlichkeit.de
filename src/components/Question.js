@@ -168,7 +168,17 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         && (input.type !== 'choice' || input.write_in === true)
           ? <p>
             <IonButton style={{ verticalAlign: 'middle' }} size="default" onClick={handleSubmit}>OK</IonButton>
-            <span style={{ verticalAlign: 'middle' }}>or press <strong>Enter ↵</strong></span>
+            {
+              (
+                input.type === 'number'
+                || input.type === 'short_text'
+                || (input.type === 'long_text' && !writeInIsActive)
+                || (input.type === 'choice' && input.write_in === true && hasValue)
+              )
+              && (!input.required || (input.required && hasValue))
+              ? <span style={{ verticalAlign: 'middle' }}>or press <strong>Enter ↵</strong></span>
+              : null
+            }
           </p>
           : null
       }

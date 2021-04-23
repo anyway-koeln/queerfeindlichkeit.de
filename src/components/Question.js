@@ -8,7 +8,7 @@ import classes from './Question.module.css'
 let abc = 'abcdefghijklmnopqrstuvwxyz'
 const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
-const keys2listen = ['Enter', ...abc, ...ABC]
+const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
 function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
@@ -27,7 +27,11 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   }
 
   useKeyPress(keys2listen, event => {
-    if (
+    if (event.key === 'Escape') {
+      if (!!inputRef && !!inputRef.current) {
+        inputRef.current.blur()
+      }
+    } else if (
       input.type === 'number'
       || input.type === 'short_text'
       || (input.type === 'long_text' && !writeInIsActive)

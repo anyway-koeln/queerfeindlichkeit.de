@@ -93,7 +93,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     if (input.type !== 'choice' && !!inputRef && !!inputRef.current && !hasValue) {
       inputRef.current.focus()
     }
-  }, [inputRef, hasValue])
+  }, [input.type, inputRef, hasValue])
 
   if (!(!!_id)) {
     return null

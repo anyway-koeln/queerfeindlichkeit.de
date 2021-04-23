@@ -14,7 +14,7 @@
 
 .survey .progress {
   position: relative;
-  margin: 32px 32px 0 32px;
+  margin: 32px calc(32px - 5px) 0;
   height: 16px;
   background-color: var(--primary, grey);
   border-radius: 8px;

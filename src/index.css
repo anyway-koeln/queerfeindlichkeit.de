@@ -9,6 +9,14 @@
   --secondary-dark: #002929;
   --on-secondary: white;
 
+  --surface: #eee;
+  --on-surface: black;
+
+  --card: white;
+  --on-card: black;
+
+  --divider: rgba(0,0,0,0.08);
+
   --rainbow-red: #E42B2B;
   --rainbow-orange: #FF8829;
   --rainbow-yellow: #FFCA29;

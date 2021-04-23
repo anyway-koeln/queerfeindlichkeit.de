@@ -90,7 +90,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   }, [input, hasValue, onSubmit, _id, value])
 
   useEffect(() => {
-    if (!!inputRef && !!inputRef.current && !hasValue) {
+    if (input.type !== 'choice' && !!inputRef && !!inputRef.current && !hasValue) {
       inputRef.current.focus()
     }
   }, [inputRef, hasValue])

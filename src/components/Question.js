@@ -167,7 +167,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         (hasValue || !input.required)
         && (input.type !== 'choice' || input.write_in === true)
           ? <p>
-            <IonButton style={{ verticalAlign: 'middle' }} size="default" onClick={handleSubmit}>OK</IonButton>
+            <IonButton style={{ verticalAlign: 'middle', margin: '0 16px 0 0' }} size="default" onClick={handleSubmit}>OK</IonButton>
             {
               (
                 input.type === 'number'

@@ -9,6 +9,14 @@ import useKeyPress from '../hooks/useKeyPress.js'
 
 import questions_path from '../questions.yaml'
 
+import { gql, useMutation } from '@apollo/client'
+
+const submit_incident = gql`
+  mutation ($text: String, $properties: JSONObject) {
+    incident(text: $text, properties: $properties)
+  }
+`
+
 function saveTextAsFile(textToWrite, fileNameToSaveAs) {
   // source: https://stackoverflow.com/questions/609530/download-textarea-contents-as-a-file-using-only-javascript-no-server-side
   var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' })
@@ -34,11 +42,23 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
   downloadLink.click()
 }
 
+const mainTextQuestion = 'what_happened'
+
 function Survey() {
+  const [uploaded, setUploaded] = useState(false)
   const [questions, setQuestions] = useState([])
   const [questionsById, setQuestionsById] = useState({})
   const [answers, setAnswers] = useState({})
   const [currentQuestionsIndex, setCurrentQuestionsIndex] = useState(0)
+
+  const [submitIncident, { loading: mutationLoading, error: mutationError }] = useMutation(submit_incident, {
+    onCompleted() {
+      setUploaded(true)
+    },
+    onError(error) {
+      console.error(error)
+    }
+  })
 
   useEffect(() => {
     async function load_data() {
@@ -153,10 +173,18 @@ function Survey() {
           return obj
         }, {})
 
-      // TODO: send data
-      console.log(answersForSending)
+      const text = answersForSending[mainTextQuestion] || ''
+      delete answersForSending[mainTextQuestion]
+
+      submitIncident({
+        variables: {
+          text,
+          properties: answersForSending
+        },
+        ignoreResults: false
+      })
     }
-  }, [answers])
+  }, [answers, submitIncident])
 
   const handleDownloadData = useCallback(() => {
     let answersForDownload = Object.values(answers)
@@ -235,7 +263,9 @@ function Survey() {
                     }
                     <hr />
                     <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
-                    <IonButton disabled={true} size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
+                    <IonButton size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
+                    {mutationLoading && <p>Uploading...</p>}
+                    {mutationError && <p>Error :( Please try again</p>}
                   </>
               )
           }

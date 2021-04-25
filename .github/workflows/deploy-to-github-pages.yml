@@ -1,5 +1,5 @@
 # This is a workflow to deploy the react code to GitHub Pages.
-name: CI
+name: Deploy to GitHub Pages
 
 # Controls when the action will run. 
 on:

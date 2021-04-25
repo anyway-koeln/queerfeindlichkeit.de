@@ -102,7 +102,6 @@ function Survey() {
   }, [setCurrentQuestionsIndex, currentQuestionsIndex, questions])
 
   useKeyPress(['ArrowRight', 'ArrowLeft'], event => {
-    console.log('event', event)
     if (event.target.nodeName === 'BODY') {
       if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
         prevQuestion()

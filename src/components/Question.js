@@ -24,9 +24,11 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   const inputRef = useRef()
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : null
-  const writeInValue = !!defaultValueObject ? defaultValueObject.write_in : null
+  const writeInDefaultValue = !!defaultValueObject ? defaultValueObject.writeIn : null
 
   const [value, setValue] = useState(defaultValue)
+  const [writeInValue, setWriteInValue] = useState(writeInDefaultValue)
+
   const [writeInIsActive, setWriteInIsActive] = useState(false)
 
   let hasValue = computeHasValue(value)

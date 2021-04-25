@@ -286,7 +286,15 @@ function Survey() {
                         const thisQuestion = questionsById[answer._id]
                         return <div key={answer._id}>
                           <div className="subtitle1">{thisQuestion.question.de}</div>
-                          <p>{!!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value}</p>
+                          {
+                            (
+                              !!thisQuestion.input.options[answer.value]
+                              ? thisQuestion.input.options[answer.value].de
+                              : answer.value
+                            )
+                            .split('\n')
+                            .map(line => <p>{line}</p>)
+                          }
                         </div>
                       })
                     }

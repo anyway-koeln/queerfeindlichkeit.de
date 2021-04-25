@@ -112,12 +112,14 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     }
   }, [input, hasValue, onSubmit, _id, value])
 
+  // auto focus input field
   useEffect(() => {
     if (input.type !== 'choice' && !!inputRef && !!inputRef.current && !hasValue) {
       inputRef.current.focus()
     }
   }, [input.type, inputRef, hasValue])
 
+  // do nothing if no question supplied
   if (!(!!_id)) {
     return null
   }

@@ -60,7 +60,11 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         index = ABC.indexOf(event.key)
       }
       if (index >= 0 && input.options[index] && !!onSubmit) {
-        onSubmit({ _id, value: input.options[index]._id })
+        onSubmit({
+          _id,
+          value: input.options[index]._id,
+          ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
+        })
       }
     }
   })
@@ -78,8 +82,6 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     setValue(value)
   }, [setValue, input.type])
 
-    onSubmit({ _id, value: option })
-  }, [onSubmit, _id])
   // START write in
   const storeWriteInValue = useCallback(event => {
     let value = event.target.value
@@ -105,12 +107,22 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   // END write in
 
   const handleChoiceClick = useCallback(option => {
+    onSubmit({
+      _id,
+      value: option,
+      ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
+    })
+  }, [onSubmit, _id, writeInValue])
 
   const handleSubmit = useCallback(() => {
     if (!!onSubmit && (!input.required || (input.required && hasValue))) {
-      onSubmit({ _id, value })
+      onSubmit({
+        _id,
+        value,
+        ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
+      })
     }
-  }, [input, hasValue, onSubmit, _id, value])
+  }, [input, hasValue, onSubmit, _id, value, writeInValue])
 
   // auto focus input field
   useEffect(() => {

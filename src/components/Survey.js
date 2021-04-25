@@ -11,6 +11,7 @@ import questions_path from '../questions.yaml'
 
 function Survey() {
   const [questions, setQuestions] = useState([])
+  const [questionsById, setQuestionsById] = useState({})
   const [answers, setAnswers] = useState({})
   const [currentQuestionsIndex, setCurrentQuestionsIndex] = useState(0)
 
@@ -22,8 +23,11 @@ function Survey() {
       const data = yaml.load(text)
 
       if (!!data && !!data.questions) {
-        setQuestions(
-          Object.entries(data.questions)
+        const dataForArray = JSON.parse(JSON.stringify(data)) // TODO: Please check, why data needs to be cloned!
+        const dataForObject = JSON.parse(JSON.stringify(data)) // TODO: Please check, why data needs to be cloned!
+
+        setQuestions( // TODO: Somewhere in the following lines, data is would get overwritten if not cloned.
+          Object.entries(dataForArray.questions)
           .map(questionEntry => {
             let thisQuestionData = questionEntry[1]
 
@@ -44,12 +48,35 @@ function Survey() {
             }
           })
         )
+
+        setQuestionsById(
+          Object.entries(dataForObject.questions)
+          .reduce((obj, questionEntry) => {
+            const _id = questionEntry[0]
+            let thisQuestionData = questionEntry[1]
+
+            if (!thisQuestionData.input) {
+              thisQuestionData.input = {}
+            }
+            if (!thisQuestionData.input.options) {
+              thisQuestionData.input.options = {}
+            }
+
+            obj[_id] = {
+              _id,
+              ...thisQuestionData
+            }
+
+            return obj
+          }, {})
+        )
       } else {
+        setQuestionsById({})
         setQuestions([])
       }
     }
     load_data()
-  }, [setQuestions])
+  }, [setQuestions, setQuestionsById])
 
   const handleChange = useCallback(data => {
     if (!!data && !!data._id) {

@@ -10,6 +10,16 @@ const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
+function computeHasValue(value) {
+  let hasValue = false
+  if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
+    hasValue = true
+  } else if (typeof value === 'number' && !isNaN(value)) {
+    hasValue = true
+  }
+  return hasValue
+}
+
 function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
 
@@ -19,12 +29,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   const [value, setValue] = useState(defaultValue)
   const [writeInIsActive, setWriteInIsActive] = useState(false)
 
-  let hasValue = false
-  if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
-    hasValue = true
-  } else if (typeof value === 'number' && !isNaN(value)) {
-    hasValue = true
-  }
+  let hasValue = computeHasValue(value)
 
   useKeyPress(keys2listen, event => {
     if (event.key === 'Escape') {

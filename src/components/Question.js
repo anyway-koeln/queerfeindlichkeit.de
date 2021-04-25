@@ -65,14 +65,6 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     }
   })
 
-  const handleWriteInFocus = useCallback(() => {
-    setWriteInIsActive(true)
-  }, [setWriteInIsActive])
-
-  const handleWriteInBlur = useCallback(() => {
-    setWriteInIsActive(false)
-  }, [setWriteInIsActive])
-
   const storeValue = useCallback(event => {
     let value = event.target.value
 
@@ -88,6 +80,16 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
 
     onSubmit({ _id, value: option })
   }, [onSubmit, _id])
+  // START write in
+  const handleWriteInFocus = useCallback(() => {
+    setWriteInIsActive(true)
+  }, [setWriteInIsActive])
+
+  const handleWriteInBlur = useCallback(() => {
+    setWriteInIsActive(false)
+  }, [setWriteInIsActive])
+  // END write in
+
   const handleChoiceClick = useCallback(option => {
 
   const handleSubmit = useCallback(() => {

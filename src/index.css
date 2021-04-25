@@ -140,6 +140,13 @@ textarea,
   color: var(--secondary-dark);
 }
 
+hr {
+  border: none;
+  height: 1px;
+  background: var(--divider);
+  margin: 32px 0;
+}
+
 /* .card {
   background-color: #f5f5f7;
   inline-size: 100%;

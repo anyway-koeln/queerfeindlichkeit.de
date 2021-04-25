@@ -38,21 +38,29 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       if (!!inputRef && !!inputRef.current) {
         inputRef.current.blur()
       }
-    } else if (
-      input.type === 'number'
-      || input.type === 'short_text'
-      || (input.type === 'long_text' && !writeInIsActive)
-      || (input.type === 'choice' && input.write_in === true && hasValue)
+    } if (
+      event.key === 'Enter'
+      && (!input.required || (input.required && hasValue))
     ) {
-      if (
-        event.key === 'Enter'
-        && (!input.required || (input.required && hasValue))
-      ) {
+      let hasWriteInValue = computeHasValue(writeInValue)
+      if (input.type === 'choice' && input.write_in === true && hasWriteInValue) {
         onSubmit({
           _id,
-          value: 'write_in',
-          write_in: value
+          value: writeInValue,
+          write_in: writeInValue
         })
+      } else if (input.type === 'choice' && hasValue) {
+        onSubmit({
+          _id,
+          value: value,
+          ...(hasWriteInValue ? { writeIn: writeInValue } : {})
+        })
+      } else if (
+        input.type === 'number'
+        || input.type === 'short_text'
+        || (input.type === 'long_text' && !writeInIsActive)
+      ) {
+        onSubmit({ _id, value })
       }
     } else if (input.type === 'choice' && !writeInIsActive) {
       let index = abc.indexOf(event.key)

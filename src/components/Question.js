@@ -108,16 +108,16 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
 
   let input_component = null
   if (input.type === 'number') {
-    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={writeInValue} />
+    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={defaultValue} />
   } else if (input.type === 'short_text') {
-    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={writeInValue} />
+    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={defaultValue} />
   } else if (input.type === 'long_text') {
     input_component = <textarea
       ref={inputRef}
       onChange={storeValue}
       onFocus={handleWriteInFocus}
       onBlur={handleWriteInBlur}
-      defaultValue={writeInValue}
+      defaultValue={defaultValue}
       placeholder="Enter a text…"
     />
   } else if (input.type === 'choice') {

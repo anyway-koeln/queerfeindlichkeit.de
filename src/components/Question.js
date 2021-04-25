@@ -177,7 +177,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
               onChange={storeWriteInValue}
               onFocus={handleWriteInFocus}
               onBlur={handleWriteInBlur}
-              defaultValue={writeInValue}
+              defaultValue={writeInDefaultValue}
             />
           </div>
         : null

@@ -246,27 +246,40 @@ function Survey() {
                     <p>Du hast keine Angaben gemacht. Beschreib deinen Vorfall bitte etwas detailierter.</p>
                     <IonButton size="default" onClick={toTheBeginning}>Zurück zum Start</IonButton>
                   </>
-                  : <>
-                    <h3>Deine Angaben</h3>
-                    <p>Hier kannst du nochmal über deine Angaben drüber schauen.<br />Geh gerne zurück um etwas zu koorigieren.</p>
-                    <p>Wenn du zufrieden bist, klick unten auf <strong>„Vorfall eintragen”</strong>.</p>
-                    <p>Deine Daten kannst du dir unter <strong>„Daten runterladen”</strong>abspeichern.</p>
-                    <hr />
-                    {
-                      answersArray.map(answer => {
-                        const thisQuestion = questionsById[answer._id]
-                        return <div key={answer._id}>
-                          <div className="subtitle1">{thisQuestion.question.de}</div>
-                          <p>{!!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value}</p>
-                        </div>
-                      })
-                    }
-                    <hr />
-                    <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
-                    <IonButton size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
-                    {mutationLoading && <p>Uploading...</p>}
-                    {mutationError && <p>Error :( Please try again</p>}
-                  </>
+
+                  : (
+                    uploaded
+                      ? <>
+                        <h3>Vielen Dank!</h3>
+                        <p>Dein Vorfall wurde hochgeladen.</p>
+                        <p><strong>Vielen Dank, dass Du hilfst Queerfeindlichkeit sichtbar zu machen!</strong></p>
+                        <p>Du möchtest wissen, wie es weitergeht? Auf <a href="https://www.instagram.com/queerfeindlichkeit/">Instagram</a> und  <a href="https://twitter.com/anyway_koeln">Twitter</a> veröffentlichen wir Daten und helfen dir gegen Queerfeindlichkeit anzukommen.</p>
+                        <hr />
+                        <p>Hier kannst du dir noch Deine Daten abspeichern:</p>
+                        <IonButton size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
+                      </>
+                      : <>
+                        <h3>Deine Angaben</h3>
+                        <p>Hier kannst du nochmal über deine Angaben drüber schauen.<br />Geh gerne zurück um etwas zu koorigieren.</p>
+                        <p>Wenn du zufrieden bist, klick unten auf <strong>„Vorfall eintragen”</strong>.</p>
+                        <p>Deine Daten kannst du dir unter <strong>„Daten runterladen”</strong>abspeichern.</p>
+                        <hr />
+                        {
+                          answersArray.map(answer => {
+                            const thisQuestion = questionsById[answer._id]
+                            return <div key={answer._id}>
+                              <div className="subtitle1">{thisQuestion.question.de}</div>
+                              <p>{!!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value}</p>
+                            </div>
+                          })
+                        }
+                        <hr />
+                        <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
+                        <IonButton size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
+                        {mutationLoading && <p>Uploading...</p>}
+                        {mutationError && <p>Error :( Please try again</p>}
+                      </>
+                  )
               )
           }
         </div>

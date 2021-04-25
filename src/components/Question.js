@@ -54,7 +54,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
           write_in: value
         })
       }
-    } else if (input.type === 'choice') {
+    } else if (input.type === 'choice' && !writeInIsActive) {
       let index = abc.indexOf(event.key)
       if (index <= -1) {
         index = ABC.indexOf(event.key)

@@ -9,6 +9,31 @@ import useKeyPress from '../hooks/useKeyPress.js'
 
 import questions_path from '../questions.yaml'
 
+function saveTextAsFile(textToWrite, fileNameToSaveAs) {
+  // source: https://stackoverflow.com/questions/609530/download-textarea-contents-as-a-file-using-only-javascript-no-server-side
+  var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' })
+  var downloadLink = document.createElement('a')
+  downloadLink.download = fileNameToSaveAs
+  downloadLink.innerHTML = 'Download File'
+  if (window.webkitURL != null) {
+    // Chrome allows the link to be clicked
+    // without actually adding it to the DOM.
+    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob)
+  }
+  else {
+    // Firefox requires the link to be added to the DOM
+    // before it can be clicked.
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob)
+    downloadLink.onclick = function () {
+      downloadLink.parentNode.removeChild(downloadLink)
+    }
+    downloadLink.style.display = 'none'
+    document.body.appendChild(downloadLink)
+  }
+
+  downloadLink.click()
+}
+
 function Survey() {
   const [questions, setQuestions] = useState([])
   const [questionsById, setQuestionsById] = useState({})
@@ -115,6 +140,32 @@ function Survey() {
     }
   })
 
+  const handleDownloadData = useCallback(() => {
+    let answersForDownload = Object.values(answers)
+      .filter(answer => answer._id !== null && answer.value !== null)
+
+    if (answersForDownload.length === 0) {
+      console.warn('⚠️ Keine Angaben. Unnötig runterzuladen. But this if shoul\'nt get called anyway.')
+    } else {
+      let now = new Date().toISOString()
+      now = now.replace(/T/g, ' ')
+      const nowForFilename = now.replace(/(:|\.)/g, '-')
+
+      answersForDownload = `# Dein Vorfall (${now})\n\n${
+        answersForDownload.map(answer => {
+          const thisQuestion = questionsById[answer._id]
+          return `## ${
+            thisQuestion.question.de
+          }\n\n${
+            !!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value
+          }`
+        }).join('\n\n')
+      }`
+
+      saveTextAsFile(answersForDownload, `Dein Vorfall ${nowForFilename}.md.txt`)
+    }
+  }, [answers, questionsById])
+
   if (!(!!questions)) {
     return null
   }
@@ -165,6 +216,7 @@ function Survey() {
                       })
                     }
                     <hr />
+                    <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
                   </>
               )
           }

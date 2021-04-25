@@ -140,6 +140,24 @@ function Survey() {
     }
   })
 
+  const handleSendData = useCallback(() => {
+    let answersForSending = Object.values(answers)
+      .filter(answer => answer._id !== null && answer.value !== null)
+
+    if (answersForSending.length === 0) {
+      console.warn('⚠️ Keine Angaben. Unnötig abzusenden. But this if shoul\'nt get called anyway.')
+    } else {
+      answersForSending = answersForSending
+        .reduce((obj, answer) => {
+          obj[answer._id] = answer.value
+          return obj
+        }, {})
+
+      // TODO: send data
+      console.log(answersForSending)
+    }
+  }, [answers])
+
   const handleDownloadData = useCallback(() => {
     let answersForDownload = Object.values(answers)
       .filter(answer => answer._id !== null && answer.value !== null)
@@ -217,6 +235,7 @@ function Survey() {
                     }
                     <hr />
                     <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
+                    <IonButton disabled={true} size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
                   </>
               )
           }

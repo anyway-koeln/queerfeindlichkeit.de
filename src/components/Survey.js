@@ -117,6 +117,9 @@ function Survey() {
 
   const currentQuestion = questions[currentQuestionsIndex]
 
+  const answersArray = Object.values(answers)
+    .filter(answer => answer.value !== null)
+
   return (
     <div className={classes.survey}>
       <div className={classes.progress} style={{
@@ -135,10 +138,30 @@ function Survey() {
                 {...currentQuestion}
               />
             </>
-            : <>
-                <p>Show summary and final submit button.</p>
-                <pre>{JSON.stringify(answers, null, 2)}</pre>
-              </>
+            : (
+                answersArray.length === 0
+                  ? <>
+                    <h3>Hmmm…</h3>
+                    <p>Du hast keine Angaben gemacht. Beschreib deinen Vorfall bitte etwas detailierter.</p>
+                  </>
+                  : <>
+                    <h3>Deine Angaben</h3>
+                    <p>Hier kannst du nochmal über deine Angaben drüber schauen.<br />Geh gerne zurück um etwas zu koorigieren.</p>
+                    <p>Wenn du zufrieden bist, klick unten auf <strong>„Vorfall eintragen”</strong>.</p>
+                    <p>Deine Daten kannst du dir unter <strong>„Daten runterladen”</strong>abspeichern.</p>
+                    <hr />
+                    {
+                      answersArray.map(answer => {
+                        const thisQuestion = questionsById[answer._id]
+                        return <div key={answer._id}>
+                          <div className="subtitle1">{thisQuestion.question.de}</div>
+                          <p>{!!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value}</p>
+                        </div>
+                      })
+                    }
+                    <hr />
+                  </>
+              )
           }
         </div>
       </div>

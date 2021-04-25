@@ -134,15 +134,21 @@ function Survey() {
   }, [setAnswers, answers, setCurrentQuestionsIndex, currentQuestionsIndex, questions.length])
 
   const prevQuestion = useCallback(() => {
-    if (currentQuestionsIndex > 0) {
+    if (currentQuestionsIndex > -1) {
       setCurrentQuestionsIndex(currentQuestionsIndex - 1)
     }
   }, [setCurrentQuestionsIndex, currentQuestionsIndex])
 
   const nextQuestion = useCallback(() => {
-    const currentQuestion = questions[currentQuestionsIndex]
-    if (currentQuestionsIndex <= questions.length && !currentQuestion.input.required) {
-      setCurrentQuestionsIndex(currentQuestionsIndex + 1)
+    if (currentQuestionsIndex <= questions.length) {
+      if (currentQuestionsIndex <= 0) { // if -1 (intro)
+        setCurrentQuestionsIndex(currentQuestionsIndex + 1)
+      } else { // if between 0 and questions.length
+        const currentQuestion = questions[currentQuestionsIndex]
+        if (!currentQuestion.input.required) {
+          setCurrentQuestionsIndex(currentQuestionsIndex + 1)
+        }
+      }
     }
   }, [setCurrentQuestionsIndex, currentQuestionsIndex, questions])
 
@@ -297,8 +303,8 @@ function Survey() {
         </div>
       </div>
       <div className={classes.actions}>
-        <IonButton disabled={currentQuestionsIndex <= 0} fill="outline" size="default" onClick={prevQuestion}>zurück</IonButton>
-        <IonButton disabled={currentQuestionsIndex >= questions.length || currentQuestion.input.required} fill="outline" size="default" onClick={nextQuestion}>vor</IonButton>
+        <IonButton disabled={currentQuestionsIndex <= -1} fill="outline" size="default" onClick={prevQuestion}>zurück</IonButton>
+        <IonButton disabled={currentQuestionsIndex >= questions.length || (!!currentQuestion && !!currentQuestion.input && currentQuestion.input.required)} fill="outline" size="default" onClick={nextQuestion}>vor</IonButton>
       </div>
     </div>
   )

@@ -81,6 +81,20 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     onSubmit({ _id, value: option })
   }, [onSubmit, _id])
   // START write in
+  const storeWriteInValue = useCallback(event => {
+    let value = event.target.value
+
+    if (input.type === 'number') {
+      value = parseFloat(value)
+      if (isNaN(value)) {
+        value = null
+      }
+    }
+
+    setValue(value)
+    setWriteInValue(value)
+  }, [setValue, input.type, setWriteInValue])
+
   const handleWriteInFocus = useCallback(() => {
     setWriteInIsActive(true)
   }, [setWriteInIsActive])
@@ -160,7 +174,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
               ref={inputRef}
               type="text"
               placeholder="Enter a short text as your own answer…"
-              onChange={storeValue}
+              onChange={storeWriteInValue}
               onFocus={handleWriteInFocus}
               onBlur={handleWriteInBlur}
               defaultValue={writeInValue}

@@ -101,6 +101,10 @@ function Survey() {
     }
   }, [setCurrentQuestionsIndex, currentQuestionsIndex, questions])
 
+  const toTheBeginning = useCallback(() => {
+    setCurrentQuestionsIndex(0)
+  }, [setCurrentQuestionsIndex])
+
   useKeyPress(['ArrowRight', 'ArrowLeft'], event => {
     if (event.target.nodeName === 'BODY') {
       if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
@@ -143,6 +147,7 @@ function Survey() {
                   ? <>
                     <h3>Hmmm…</h3>
                     <p>Du hast keine Angaben gemacht. Beschreib deinen Vorfall bitte etwas detailierter.</p>
+                    <IonButton size="default" onClick={toTheBeginning}>Zurück zum Start</IonButton>
                   </>
                   : <>
                     <h3>Deine Angaben</h3>

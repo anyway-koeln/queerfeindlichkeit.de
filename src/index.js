@@ -6,6 +6,13 @@ import reportWebVitals from './reportWebVitals'
 import { setupConfig } from '@ionic/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client/react'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
+})
 
 setupConfig({
     mode: 'ios',
@@ -15,7 +22,9 @@ ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
       <Router basemname={`/${process.env.PUBLIC_URL}`}>
-        <App />
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
       </Router>
     </HelmetProvider>
   </React.StrictMode>,

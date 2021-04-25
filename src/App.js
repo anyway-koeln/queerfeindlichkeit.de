@@ -107,12 +107,12 @@ function App() {
         <meta name="pinterest-rich-pin" content="true" />
       </Helmet>
 
-      <Header />
-
       {
         surveyIsOpen
-        ? null
+        ? <Survey />
         : <>
+          <Header />
+
           <p style={{textAlign: 'center', margin: '64px 0'}}>
             Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
           </p>
@@ -122,24 +122,23 @@ function App() {
             <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
             <NavLink to="/survey"><IonButton>Vorfall melden</IonButton></NavLink>
           </nav>
+
+          <main id="main">
+            <Switch>
+              <Route path="/story/:id" children={<Story />} />
+              <Route path="/story" children={<Redirect to="/" />} />
+              <Route path="/blog/:id" children={<Article />} />
+              <Route path="/blog" children={<Blog />} />
+              <Route path="/" exact={true} children={<Home />} />
+              <Route path="*" children={<Redirect to="/" />} />
+            </Switch>
+          </main>
+
+          <Rainbow style={{ marginTop: '128px' }} />
+
+          <Footer />
         </>
       }
-
-      <main id="main">
-        <Switch>
-          <Route path="/survey" children={<Survey />} />
-          <Route path="/story/:id" children={<Story />} />
-          <Route path="/story" children={<Redirect to="/" />} />
-          <Route path="/blog/:id" children={<Article />} />
-          <Route path="/blog" children={<Blog />} />
-          <Route path="/" exact={true} children={<Home />} />
-          <Route path="*" children={<Redirect to="/" />} />
-        </Switch>
-      </main>
-
-      <Rainbow style={{ marginTop: '128px' }}/>
-
-      <Footer />
     </>
   )
 }

@@ -79,9 +79,9 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     setValue(value)
   }, [setValue, input.type])
 
-  const handleClick = useCallback(option => {
     onSubmit({ _id, value: option })
   }, [onSubmit, _id])
+  const handleChoiceClick = useCallback(option => {
 
   const handleSubmit = useCallback(() => {
     if (!!onSubmit && (!input.required || (input.required && hasValue))) {
@@ -137,7 +137,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
               style={{ verticalAlign: 'middle' }}
               fill={value === option._id ? 'solid' : 'outline'}
               size="small"
-              onClick={() => handleClick(option._id)}
+              onClick={() => handleChoiceClick(option._id)}
             >
               {option.de}
             </IonButton>

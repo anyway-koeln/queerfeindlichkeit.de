@@ -7,8 +7,7 @@
   padding: 8px 16px;
   border-width: 0 0 2px 0;
   border-style: solid;
-  border-color: black;
-  border-radius: 8px 8px 0 0;
+  border-color: var(--secondary);
   outline: none;
 }
 .question textarea {
@@ -18,7 +17,7 @@
 }
 .question input:focus,
 .question textarea:focus {
-  border-color: #3880ff;
+  border-color: var(--primary);
 }
 
 .option {

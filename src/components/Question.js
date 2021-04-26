@@ -12,9 +12,13 @@ const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
 function computeHasValue(value) {
   let hasValue = false
-  if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
+  if (Array.isArray(value) && value.length > 0) {
+    hasValue = true
+  } else if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
     hasValue = true
   } else if (typeof value === 'number' && !isNaN(value)) {
+    hasValue = true
+  } else if (typeof value === 'object' && value !== null && Object.keys(value).length > 0) {
     hasValue = true
   }
   return hasValue

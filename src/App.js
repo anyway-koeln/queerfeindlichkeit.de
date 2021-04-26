@@ -11,8 +11,6 @@ import {
   useRouteMatch,
 } from "react-router-dom"
 
-// import madison from './madison.jpg'
-// import Section from './components/Section.js'
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 import Rainbow from './components/Rainbow.js'

@@ -128,7 +128,7 @@ questions:
     question:
       de: Wie alt warst du zur Tat bzw. zum Beginn der Tat?
     description:
-      de: Wenn du es nicht weißt, dann lass das Feld frei.
+      de: Schätze, wenn du es nicht genau weißt.
     input:
       type: number
   mental_stress:

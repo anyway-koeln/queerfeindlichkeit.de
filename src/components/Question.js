@@ -12,7 +12,9 @@ const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
 function computeHasValue(value) {
   let hasValue = false
-  if (Array.isArray(value) && value.length > 0) {
+  if (typeof value === 'object' && value instanceof Set && value.size > 0) {
+    hasValue = true
+  } else if (Array.isArray(value) && value.length > 0) {
     hasValue = true
   } else if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
     hasValue = true

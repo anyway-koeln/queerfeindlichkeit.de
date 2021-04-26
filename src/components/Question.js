@@ -15,7 +15,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   const inputRef = useRef()
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : null
-  const writeInDefaultValue = !!defaultValueObject ? defaultValueObject.writeIn : null
+  const writeInDefaultValue = !!defaultValueObject ? defaultValueObject.write_in : null
 
   const [value, setValue] = useState(defaultValue)
   const [writeInValue, setWriteInValue] = useState(writeInDefaultValue)
@@ -118,7 +118,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       onSubmit({
         _id,
         value,
-        ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
+        ...(computeHasValue(writeInValue) ? { write_in: writeInValue } : {})
       })
     }
   }, [input, hasValue, onSubmit, _id, value, writeInValue])

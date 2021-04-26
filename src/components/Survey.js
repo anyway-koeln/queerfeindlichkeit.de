@@ -270,8 +270,8 @@ function Survey() {
               ? <>
                 <Question
                   key={currentQuestion._id}
-                onSubmit={handleChange}
-                defaultValue={answers[currentQuestion._id] || null}
+                  onSubmit={handleChange}
+                  defaultValue={answers[currentQuestion._id] || null}
                   {...currentQuestion}
                 />
               </>

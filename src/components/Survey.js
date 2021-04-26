@@ -45,6 +45,10 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
 
 const mainTextQuestion = 'what_happened'
 
+function getValueTitle(value, options) {
+  return !!options && !!options[value] ? options[value].de : value
+}
+
 function Survey() {
   const [uploaded, setUploaded] = useState(false)
   const [questions, setQuestions] = useState([])
@@ -184,7 +188,14 @@ function Survey() {
     } else {
       answersForSending = answersForSending
         .reduce((obj, answer) => {
-          obj[answer._id] = answer.value
+          const thisQuestion = questionsById[answer._id]
+
+          const value = [...answer.value]
+          if (thisQuestion.input.select_multiple === true) {
+            obj[answer._id] = value
+          } else {
+            obj[answer._id] = value[0]
+          }
           return obj
         }, {})
 
@@ -199,7 +210,7 @@ function Survey() {
         ignoreResults: false
       })
     }
-  }, [answers, submitIncident])
+  }, [answers, questionsById, submitIncident])
 
   const handleDownloadData = useCallback(() => {
     let answersForDownload = Object.values(answers)
@@ -218,7 +229,9 @@ function Survey() {
           return `## ${
             thisQuestion.question.de
           }\n\n${
-            !!thisQuestion.input.options[answer.value] ? thisQuestion.input.options[answer.value].de : answer.value
+            thisQuestion.input.select_multiple === true
+            ? [...answer.value].map(thisValue => `- ${getValueTitle(thisValue, thisQuestion.input.options)}`).join('\n')
+            : getValueTitle([...answer.value][0], thisQuestion.input.options)
           }`
         }).join('\n\n')
       }`
@@ -289,16 +302,17 @@ function Survey() {
                     {
                       answersArray.map(answer => {
                         const thisQuestion = questionsById[answer._id]
+
                         return <div key={answer._id}>
                           <div className="subtitle1">{thisQuestion.question.de}</div>
                           {
-                            (
-                              !!thisQuestion.input.options[answer.value]
-                              ? thisQuestion.input.options[answer.value].de
-                              : answer.value
-                            )
-                            .split('\n')
-                            .map(line => <p>{line}</p>)
+                            thisQuestion.input.select_multiple === true
+                              ? <p><ul>
+                                {[...answer.value].map(thisValue => <li>{getValueTitle(thisValue, thisQuestion.input.options)}</li>)}
+                              </ul></p>
+                              : getValueTitle([...answer.value][0], thisQuestion.input.options)
+                                .split('\n')
+                                .map(line => <p>{line}</p>)
                           }
                         </div>
                       })

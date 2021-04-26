@@ -50,8 +50,9 @@ https://developers.google.com/search/docs/guides/search-gallery
 */
 
 function App() {
+  const vorfallMeldenIsOpen = useRouteMatch("/vorfall-melden")
   let surveyIsOpen = useRouteMatch("/survey")
-  surveyIsOpen = surveyIsOpen !== null
+  surveyIsOpen = vorfallMeldenIsOpen !== null || surveyIsOpen !== null
 
   const title = meta.site_name // Maximum length 60-70 characters.
 
@@ -120,7 +121,7 @@ function App() {
           <nav style={{ textAlign: 'center', margin: '64px 0' }}>
             <NavLink to="/"><IonButton>Home</IonButton></NavLink>
             <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
-            <NavLink to="/survey"><IonButton>Vorfall melden</IonButton></NavLink>
+            <NavLink to="/vorfall-melden"><IonButton>Vorfall melden</IonButton></NavLink>
           </nav>
 
           <main id="main">

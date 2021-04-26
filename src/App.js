@@ -9,7 +9,6 @@ import {
   NavLink,
   Redirect,
   useRouteMatch,
-} from "react-router-dom"
 
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
@@ -20,6 +19,7 @@ import Blog from './components/Blog.js'
 import Article from './components/Article.js'
 import Story from './components/Story.js'
 import Survey from './components/Survey.js'
+} from 'react-router-dom'
 
 import logo512 from './images/logo512.png'
 import logo_wide2048 from './images/logo_wide2048.png'

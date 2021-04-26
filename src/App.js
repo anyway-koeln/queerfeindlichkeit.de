@@ -10,14 +10,14 @@ import {
   NavLink,
   Redirect,
   useRouteMatch,
+} from 'react-router-dom'
+
 // import logo512 from './images/logo512.png'
 // import logo_wide2048 from './images/logo_wide2048.png'
 
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 import Rainbow from './components/Rainbow.js'
-
-} from 'react-router-dom'
 
 const Survey = React.lazy(() => import('./components/Survey.js'))
 const Home = React.lazy(() => import('./components/Home.js'))

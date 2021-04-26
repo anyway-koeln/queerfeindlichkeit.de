@@ -9,6 +9,8 @@ import {
   NavLink,
   Redirect,
   useRouteMatch,
+// import logo512 from './images/logo512.png'
+// import logo_wide2048 from './images/logo_wide2048.png'
 
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
@@ -30,8 +32,8 @@ const meta = {
   site_name: 'QueerFeindlichkeit',
   description: 'Hier entsteht ein Antidiskriminierungsprojekt des anyway Köln zum Thema Queerfeindlichkeit.', // No longer than 155 characters.
   canonical: 'https://queerfeindlichkeit.de/',
-  coverphoto: logo_wide2048,
-  logo: logo512, // The image must be 112x112px, at minimum.
+  coverphoto: null, // logo_wide2048,
+  logo: null, // logo512, // The image must be 112x112px, at minimum.
 }
 
 /*

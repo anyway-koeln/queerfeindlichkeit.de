@@ -137,15 +137,15 @@ questions:
     input:
       type: choice
       options:
-        -1:
-          de: Weiß nicht
         0:
+          de: Sehr wenig
+        0.2:
           de: Gar nicht
-        0.25:
+        0.4:
           de: Wenig
-        0.5:
+        0.6:
           de: Mittelmäßig
-        0.75:
+        0.8:
           de: Stark
         1:
           de: Sehr stark

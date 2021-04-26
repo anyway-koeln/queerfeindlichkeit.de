@@ -15,6 +15,12 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   const inputRef = useRef()
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
+  let firstDefaultValue = [...defaultValue]
+  if (firstDefaultValue.length > 0) {
+    firstDefaultValue = firstDefaultValue[0]
+  } else {
+    firstDefaultValue = null
+  }
   const writeInDefaultValue = !!defaultValueObject ? defaultValueObject.write_in : null
 
   const [value, setValue] = useState(defaultValue)
@@ -189,16 +195,16 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
 
   let input_component = null
   if (input.type === 'number') {
-    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={defaultValue} />
+    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'short_text') {
-    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={defaultValue} />
+    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'long_text') {
     input_component = <textarea
       ref={inputRef}
       onChange={storeValue}
       onFocus={handleWriteInFocus}
       onBlur={handleWriteInBlur}
-      defaultValue={defaultValue}
+      defaultValue={firstDefaultValue}
       placeholder="Enter a text…"
     />
   } else if (input.type === 'choice') {

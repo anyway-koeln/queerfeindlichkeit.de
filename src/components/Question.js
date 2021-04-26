@@ -14,11 +14,18 @@ const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
 
-  const defaultValue = !!defaultValueObject ? defaultValueObject.value : null
+  const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
   const writeInDefaultValue = !!defaultValueObject ? defaultValueObject.write_in : null
 
   const [value, setValue] = useState(defaultValue)
   const [writeInValue, setWriteInValue] = useState(writeInDefaultValue)
+
+  const [, setValueJSON] = useState(JSON.stringify([...value]))
+
+  const setValueBoth = useCallback(newValue => {
+    setValue(newValue)
+    setValueJSON(JSON.stringify([...newValue]))
+  }, [setValue, setValueJSON])
 
   const [writeInIsActive, setWriteInIsActive] = useState(false)
 
@@ -33,18 +40,11 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       event.key === 'Enter'
       && (!input.required || (input.required && hasValue))
     ) {
-      let hasWriteInValue = computeHasValue(writeInValue)
-      if (input.type === 'choice' && input.write_in === true && hasWriteInValue) {
+      if (input.type === 'choice' && hasValue) {
         onSubmit({
           _id,
-          value: writeInValue,
-          write_in: writeInValue
-        })
-      } else if (input.type === 'choice' && hasValue) {
-        onSubmit({
-          _id,
-          value: value,
-          ...(hasWriteInValue ? { writeIn: writeInValue } : {})
+          value,
+          ...(computeHasValue(writeInValue) ? { write_in: writeInValue } : {})
         })
       } else if (
         input.type === 'number'
@@ -58,43 +58,79 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       if (index <= -1) {
         index = ABC.indexOf(event.key)
       }
-      if (index >= 0 && input.options[index] && !!onSubmit) {
-        onSubmit({
-          _id,
-          value: input.options[index]._id,
-          ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
-        })
+      if (index >= 0 && input.options[index]) {
+        const option = input.options[index]._id
+
+        if (input.select_multiple === true) {
+          const newValue = value
+          if (newValue.has(option)) {
+            newValue.delete(option)
+          } else {
+            newValue.add(option)
+          }
+          setValueBoth(newValue)
+        } else {
+          const newValue = new Set()
+          newValue.add(option)
+          setValueBoth(newValue)
+
+          if (!!onSubmit) {
+            onSubmit({
+              _id,
+              value: newValue,
+              ...(computeHasValue(writeInValue) ? { write_in: writeInValue } : {})
+            })
+          }
+        }
       }
     }
   })
 
   const storeValue = useCallback(event => {
-    let value = event.target.value
+    let newValue = event.target.value
 
     if (input.type === 'number') {
-      value = parseFloat(value)
-      if (isNaN(value)) {
-        value = null
+      newValue = parseFloat(newValue)
+      if (isNaN(newValue)) {
+        newValue = null
       }
     }
 
-    setValue(value)
-  }, [setValue, input.type])
+    const newValueSet = new Set()
+    newValueSet.add(newValue)
+    setValueBoth(newValueSet)
+  }, [setValueBoth, input.type])
 
   // START write in
   const storeWriteInValue = useCallback(event => {
-    let value = event.target.value
+    let option = event.target.value
 
-    if (input.type === 'number') {
-      value = parseFloat(value)
-      if (isNaN(value)) {
-        value = null
+    if (input.type === 'number' && option !== '') {
+      option = parseFloat(option)
+      if (isNaN(option)) {
+        option = null
       }
     }
 
-    setValue(value)
-    setWriteInValue(value)
-  }, [setValue, input.type, setWriteInValue])
+    if (input.select_multiple === true) {
+      const newValue = value
+      newValue.delete(writeInValue) // delete old value
+      if (newValue.has(option)) {
+        newValue.delete(option)
+      } else if (option !== '') {
+        newValue.add(option)
+      }
+      setValueBoth(newValue)
+    } else {
+      const newValue = new Set()
+      if (option !== '') {
+        newValue.add(option)
+      }
+      setValueBoth(newValue)
+    }
+
+    setWriteInValue(option)
+  }, [input.type, input.select_multiple, value, writeInValue, setValueBoth, setWriteInValue])
 
   const handleWriteInFocus = useCallback(() => {
     setWriteInIsActive(true)
@@ -106,12 +142,28 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   // END write in
 
   const handleChoiceClick = useCallback(option => {
-    onSubmit({
-      _id,
-      value: option,
-      ...(computeHasValue(writeInValue) ? { writeIn: writeInValue } : {})
-    })
-  }, [onSubmit, _id, writeInValue])
+    if (input.select_multiple === true) {
+      const newValue = value
+      if (newValue.has(option)) {
+        newValue.delete(option)
+      } else {
+        newValue.add(option)
+      }
+      setValueBoth(newValue)
+    }else{
+      const newValue = new Set()
+      newValue.add(option)
+      setValueBoth(newValue)
+
+      if (!!onSubmit) {
+        onSubmit({
+          _id,
+          value: newValue,
+          ...(computeHasValue(writeInValue) ? { write_in: writeInValue } : {})
+        })
+      }
+    }
+  }, [value, setValueBoth, onSubmit, input.select_multiple, _id, writeInValue])
 
   const handleSubmit = useCallback(() => {
     if (!!onSubmit && (!input.required || (input.required && hasValue))) {
@@ -171,7 +223,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
             </span>
             <IonButton
               style={{ verticalAlign: 'middle' }}
-              fill={value === option._id ? 'solid' : 'outline'}
+              fill={value.has(option._id) ? 'solid' : 'outline'}
               size="small"
               onClick={() => handleChoiceClick(option._id)}
             >

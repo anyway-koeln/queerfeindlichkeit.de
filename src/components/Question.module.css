@@ -1,3 +1,13 @@
+.question .button_key {
+  display: inline-block;
+  vertical-align: middle;
+  width: 26px;
+  text-align: center;
+  color: #3880ff;
+  font-weight: bold;
+  margin: 0 2px 0 8px;
+}
+
 .question input,
 .question textarea {
   display: block;

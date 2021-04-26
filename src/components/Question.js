@@ -216,15 +216,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
               className="body2"
               style={{ whiteSpace: 'nowrap' }}
             >
-            <span style={{
-              display: 'inline-block',
-              verticalAlign: 'middle',
-              width: '26px',
-              textAlign: 'center',
-              color: '#3880ff',
-              fontWeight: 'bold',
-              margin: '0 2px 0 8px'
-            }}>
+            <span className={classes.button_key}>
               {ABC[index]}
             </span>
             <IonButton

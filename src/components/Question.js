@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, useRef } from 'react'
 import useKeyPress from '../hooks/useKeyPress.js'
+import computeHasValue from '../functions/computeHasValue.js'
 
 import { IonButton } from '@ionic/react'
 
@@ -9,22 +10,6 @@ let abc = 'abcdefghijklmnopqrstuvwxyz'
 const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
-
-function computeHasValue(value) {
-  let hasValue = false
-  if (typeof value === 'object' && value instanceof Set && value.size > 0) {
-    hasValue = true
-  } else if (Array.isArray(value) && value.length > 0) {
-    hasValue = true
-  } else if ((typeof value === 'string' || value instanceof String) && value.length > 0) {
-    hasValue = true
-  } else if (typeof value === 'number' && !isNaN(value)) {
-    hasValue = true
-  } else if (typeof value === 'object' && value !== null && Object.keys(value).length > 0) {
-    hasValue = true
-  }
-  return hasValue
-}
 
 function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()

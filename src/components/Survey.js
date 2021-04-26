@@ -6,6 +6,7 @@ import { IonButton } from '@ionic/react'
 import classes from './Survey.module.css'
 import Question from './Question.js'
 import useKeyPress from '../hooks/useKeyPress.js'
+import computeHasValue from '../functions/computeHasValue.js'
 
 import questions_path from '../questions.yaml'
 
@@ -125,7 +126,11 @@ function Survey() {
 
   const handleChange = useCallback(data => {
     if (!!data && !!data._id) {
-      answers[data._id] = data
+      if (computeHasValue(data.value)) {
+        answers[data._id] = data
+      } else if (!!answers[data._id]){
+        delete answers[data._id]
+      }
       setAnswers(answers)
     }
     if (currentQuestionsIndex <= questions.length) {

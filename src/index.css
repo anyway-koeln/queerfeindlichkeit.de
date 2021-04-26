@@ -253,8 +253,8 @@ a:hover {
 
 ion-button.button-solid {
   --background: var(--secondary);
-  --background-activated: var(--secondary-dark);
-  --background-focused: var(--secondary-dark);
+  --background-activated: var(--primary);
+  --background-focused: var(--primary);
   --background-hover: var(--secondary-light);
   --border-radius: 0;
   --color: var(--on-secondary);
@@ -265,8 +265,8 @@ ion-button.button-solid {
 ion-button.button-outline {
   --border-radius: 0;
   --color: var(--secondary);
-  --color-activated: var(--secondary-dark);
-  --color-focused: var(--secondary-dark);
+  --color-activated: var(--primary);
+  --color-focused: var(--primary);
   --color-hover: var(--secondary-light);
   --border-color: var(--secondary);
 }

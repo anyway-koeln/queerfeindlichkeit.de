@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { IonButton } from '@ionic/react'
 
@@ -16,16 +17,13 @@ import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 import Rainbow from './components/Rainbow.js'
 
-import Home from './components/Home.js'
-import Blog from './components/Blog.js'
-import Article from './components/Article.js'
-import Story from './components/Story.js'
-import Survey from './components/Survey.js'
 } from 'react-router-dom'
 
-import logo512 from './images/logo512.png'
-import logo_wide2048 from './images/logo_wide2048.png'
-
+const Survey = React.lazy(() => import('./components/Survey.js'))
+const Home = React.lazy(() => import('./components/Home.js'))
+const Blog = React.lazy(() => import('./components/Blog.js'))
+const Article = React.lazy(() => import('./components/Article.js'))
+const Story = React.lazy(() => import('./components/Story.js'))
 
 const meta = {
   language: 'de',
@@ -49,10 +47,15 @@ Metadata Infos:
 https://developers.google.com/search/docs/guides/search-gallery
 */
 
+function SuspenseWrapper({ children }) {
+  return <Suspense fallback={<div>Loading...</div>}>
+    {children}
+  </Suspense>
+}
+
 function App() {
-  const vorfallMeldenIsOpen = useRouteMatch("/vorfall-melden")
-  let surveyIsOpen = useRouteMatch("/survey")
-  surveyIsOpen = vorfallMeldenIsOpen !== null || surveyIsOpen !== null
+  let vorfallMeldenIsOpen = useRouteMatch("/vorfall-melden")
+  vorfallMeldenIsOpen = vorfallMeldenIsOpen !== null
 
   const title = meta.site_name // Maximum length 60-70 characters.
 
@@ -109,8 +112,8 @@ function App() {
       </Helmet>
 
       {
-        surveyIsOpen
-        ? <Survey />
+        vorfallMeldenIsOpen
+        ? <SuspenseWrapper children={<Survey />} />
         : <>
           <Header />
 
@@ -126,11 +129,12 @@ function App() {
 
           <main id="main">
             <Switch>
-              <Route path="/story/:id" children={<Story />} />
+              <Route path="/survey" children={<Redirect to="/vorfall-melden" />} />
+              <Route path="/story/:id" children={<SuspenseWrapper children={<Story />} />} />
               <Route path="/story" children={<Redirect to="/" />} />
-              <Route path="/blog/:id" children={<Article />} />
-              <Route path="/blog" children={<Blog />} />
-              <Route path="/" exact={true} children={<Home />} />
+              <Route path="/blog/:id" children={<SuspenseWrapper children={<Article />} />} />
+              <Route path="/blog" children={<SuspenseWrapper children={<Blog />} />} />
+              <Route path="/" exact={true} children={<SuspenseWrapper children={<Home />} />} />
               <Route path="*" children={<Redirect to="/" />} />
             </Switch>
           </main>

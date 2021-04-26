@@ -262,7 +262,7 @@ function Survey() {
             ? <>
                 <h3>Vorfall melden</h3>
                 <p>Hier kannst du einen queerfeindlichen Übergriff melden.</p>
-                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank">info@queerfeindlichkeit.de</a> wenden.</p>
+                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden.</p>
                 <IonButton size="default" onClick={gotoFirstQuestion}>Los gehts</IonButton>
             </>
             : (
@@ -288,7 +288,7 @@ function Survey() {
                     <h3>Vielen Dank!</h3>
                     <p>Dein Vorfall wurde hochgeladen.</p>
                     <p><strong>Vielen Dank, dass Du hilfst Queerfeindlichkeit sichtbar zu machen!</strong></p>
-                            <p>Du möchtest wissen, wie es weitergeht? Auf <a href="https://www.instagram.com/queerfeindlichkeit/" target="_blank">Instagram</a> und  <a href="https://twitter.com/anyway_koeln" target="_blank">Twitter</a> veröffentlichen wir Daten und helfen dir gegen Queerfeindlichkeit anzukommen.</p>
+                            <p>Du möchtest wissen, wie es weitergeht? Auf <a href="https://www.instagram.com/queerfeindlichkeit/" target="_blank" rel="noreferrer">Instagram</a> und  <a href="https://twitter.com/anyway_koeln" target="_blank" rel="noreferrer">Twitter</a> veröffentlichen wir Daten und helfen dir gegen Queerfeindlichkeit anzukommen.</p>
                     <hr />
                     <p>Hier kannst du dir noch Deine Daten abspeichern:</p>
                     <IonButton size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>

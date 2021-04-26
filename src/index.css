@@ -250,3 +250,23 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+ion-button.button-solid {
+  --background: var(--secondary);
+  --background-activated: var(--secondary-dark);
+  --background-focused: var(--secondary-dark);
+  --background-hover: var(--secondary-light);
+  --border-radius: 0;
+  --color: var(--on-secondary);
+  --color-activated: var(--on-secondary);
+  --color-focused: var(--on-secondary);
+  --color-hover: var(--on-secondary);
+}
+ion-button.button-outline {
+  --border-radius: 0;
+  --color: var(--secondary);
+  --color-activated: var(--secondary-dark);
+  --color-focused: var(--secondary-dark);
+  --color-hover: var(--secondary-light);
+  --border-color: var(--secondary);
+}

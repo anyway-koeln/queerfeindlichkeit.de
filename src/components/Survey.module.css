@@ -17,10 +17,9 @@
   right: 0;
   left: 0;
 
-  margin: 32px calc(32px - 5px) 0;
+  margin: 32px 32px 0;
   height: 16px;
   background-color: var(--primary, grey);
-  border-radius: 8px;
   overflow: hidden;
   transition: opacity 0.2s ease;
 }
@@ -32,7 +31,6 @@
   left: 0;
   background-color: var(--secondary, black);
   width: var(--width);
-  border-radius: 7px;
   transition: width 0.2s ease;
 }
 

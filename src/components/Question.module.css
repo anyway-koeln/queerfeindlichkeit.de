@@ -1,11 +1,11 @@
 .question .button_key {
   display: inline-block;
   vertical-align: middle;
-  width: 26px;
+  width: 12px;
   text-align: center;
-  color: #3880ff;
+  color: var(--secondary);
   font-weight: bold;
-  margin: 0 2px 0 8px;
+  margin: 0 16px 0 0;
 }
 
 .question input,

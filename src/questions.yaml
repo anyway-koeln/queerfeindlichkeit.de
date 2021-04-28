@@ -259,6 +259,8 @@ questions:
           de: Ja
         no:
           de: Nein
+        dunno:
+          de: Weiß nicht
   feedback:
     question:
       de: Wie findest du den Fragebogen?

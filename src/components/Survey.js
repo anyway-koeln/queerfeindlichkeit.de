@@ -46,7 +46,19 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
 const mainTextQuestion = 'what_happened'
 
 function getValueTitle(value, options) {
-  return !!options && !!options[value] ? options[value].de : value
+  const thisOption = !!options && !!options[value] ? options[value].de : value
+
+  let title = null
+
+  if (typeof thisOption === 'string' || thisOption instanceof String) {
+    title = thisOption
+  } else {
+    if (!!thisOption.title) {
+      title = thisOption.title
+    }
+  }
+
+  return title
 }
 
 function Survey() {

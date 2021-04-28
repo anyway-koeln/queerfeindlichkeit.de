@@ -158,8 +158,8 @@ function GeoInput({ onChange, defaultValue }) {
     <MapZoom map={map} />
     <MapContainer
       className={classes.map}
-      center={[50, 7]}
-      zoom={13}
+      center={[51.2964955, 9.9019876]}
+      zoom={5.5}
       scrollWheelZoom={false}
       zoomControl={false}
     >

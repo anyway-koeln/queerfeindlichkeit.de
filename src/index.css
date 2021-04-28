@@ -10,10 +10,10 @@
   --on-secondary: white;
 
   --surface: #eee;
-  --on-surface: black;
+  --on-surface: var(--secondary-dark);
 
   --card: white;
-  --on-card: black;
+  --on-card: var(--secondary-dark);
 
   --divider: rgba(0,0,0,0.12);
 

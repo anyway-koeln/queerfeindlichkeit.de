@@ -77,11 +77,20 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
           }
           setValueBoth(newValue)
         } else {
+          let oldValue = [...value]
+          if (oldValue.length > 0) {
+            oldValue = oldValue[0]
+          } else {
+            oldValue = null
+          }
+
           const newValue = new Set()
-          newValue.add(option)
+          if (option !== oldValue) {
+            newValue.add(option)
+          }
           setValueBoth(newValue)
 
-          if (!!onSubmit) {
+          if (!!onSubmit && option !== oldValue) {
             onSubmit({
               _id,
               value: newValue,
@@ -165,12 +174,21 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         newValue.add(option)
       }
       setValueBoth(newValue)
-    }else{
+    } else {
+      let oldValue = [...value]
+      if (oldValue.length > 0) {
+        oldValue = oldValue[0]
+      } else {
+        oldValue = null
+      }
+
       const newValue = new Set()
-      newValue.add(option)
+      if (option !== oldValue) {
+        newValue.add(option)
+      }
       setValueBoth(newValue)
 
-      if (!!onSubmit) {
+      if (!!onSubmit && option !== oldValue) {
         onSubmit({
           _id,
           value: newValue,

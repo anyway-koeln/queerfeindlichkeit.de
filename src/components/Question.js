@@ -260,7 +260,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   return (
     <div className={classes.question}>
       <h3 className="subtitle1">{question.de}</h3>
-      {!!description ? <p>{description.de}</p> : null}
+      {!!description ? description.de.split('\n').filter(Boolean).map(line => <p>{line}</p>) : null}
       {input.required ? <p style={{ color: 'darkred', fontWeight: 'bold' }}>Required!</p> : null}
       {input_component}
       {

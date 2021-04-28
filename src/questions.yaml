@@ -170,17 +170,17 @@ questions:
     input:
       type: choice
       options:
-        0.0:
+        _-1:
+          de: Weiß nicht
+        _0:
           de: Sehr wenig
-        0.2:
-          de: Gar nicht
-        0.4:
+        _0.25:
           de: Wenig
-        0.6:
+        _0.5:
           de: Mittelmäßig
-        0.8:
+        _0.75:
           de: Stark
-        1.0:
+        _1.0:
           de: Sehr stark
   feedback:
     question:

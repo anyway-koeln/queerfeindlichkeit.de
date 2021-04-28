@@ -44,7 +44,6 @@ function MapSearch({ map, onChange }) {
         provider.search({ query: event.target.value })
           .then(function (result) {
             if (result.length > 0) {
-              console.log('result[0]', result[0])
               map.fitBounds(result[0].bounds)
               // map.setView({ lng: result[0].x, lat: result[0].y })
             }
@@ -110,7 +109,6 @@ function GeoInput({ onChange, defaultValue }) {
   const [markerPos, setMarkerPos] = useState({ lat: defaultValueLatLng[0] || 0, lng: defaultValueLatLng[1] || 0 })
   const [preciseMarkerPos, setPreciseMarkerPos] = useState(markerPos)
   const rectangle = useRectangle(markerPos)
-  console.log('rectangle', rectangle)
 
   useEffect(() => {
     const L = window.L

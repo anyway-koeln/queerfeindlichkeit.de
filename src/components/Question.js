@@ -269,7 +269,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
               </span>
               <p className="body2" style={{ whiteSpace: 'normal', margin: '0' }}>
                 <IonButton
-                  style={{ verticalAlign: 'middle', margin: '0 0 2px 0' }}
+                  style={{ verticalAlign: 'middle', margin: '0 0 2px 0', fontWeight: 'bold' }}
                   fill={value.has(option._id) ? 'solid' : 'outline'}
                   size="small"
                   onClick={() => handleChoiceClick(option._id)}

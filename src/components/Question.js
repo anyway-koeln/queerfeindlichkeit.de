@@ -5,6 +5,7 @@ import computeHasValue from '../functions/computeHasValue.js'
 import { IonButton } from '@ionic/react'
 
 import classes from './Question.module.css'
+import GeoInput from './GeoInput.js'
 
 let abc = 'abcdefghijklmnopqrstuvwxyz'
 const ABC = abc.toUpperCase().split('')
@@ -106,6 +107,12 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     newValueSet.add(newValue)
     setValueBoth(newValueSet)
   }, [setValueBoth, input.type])
+
+  const storeGeoValue = useCallback(value => {
+    const newValueSet = new Set()
+    newValueSet.add(value)
+    setValueBoth(newValueSet)
+  }, [setValueBoth])
 
   // START write in
   const storeWriteInValue = useCallback(event => {
@@ -246,6 +253,8 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         : null
       }
     </>
+  } else if (input.type === 'geo') {
+    input_component = <GeoInput onChange={storeGeoValue} defaultValue={firstDefaultValue} />
   }
 
   return (

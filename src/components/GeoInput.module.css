@@ -1,0 +1,33 @@
+
+.mapWrapper{
+  position: relative;
+  height: 400px;
+}
+
+.map {
+  height: 400px;
+  cursor: pointer;
+}
+
+.mapWrapper .searchInput {
+  z-index: 9999;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  left: 8px;
+
+  margin: 0;
+  width: calc(100% - 48px);
+}
+
+.mapWrapper .zoomButtonsWrapper {
+  z-index: 9999;
+  position: absolute;
+  right: 8px;
+  bottom: calc(16.5px + 8px); /* 16.5px is the attribution height */
+}
+.mapWrapper .zoomButtonsWrapper .zoomButton {
+  display: block;
+  margin: 8px 0 0 0;
+  min-width: 44.8px;
+}

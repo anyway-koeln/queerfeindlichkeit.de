@@ -3,9 +3,12 @@ questions:
     question:
       de: Wo ist der Vorfall passiert?
     description:
-      de: Es erscheint am Ende nur ein ungenauer Bereich. (Land, Postleitzahl, Kreis, …)
+      de: |
+        Wähl auf der Karte aus, wo ungefähr der Vorfall passiert ist.
+        Wir runden deine Auswahl auf einen ungenauen Bereich damit deine Privatsphäre gewart bleibt.
     input:
-      type: short_text
+      type: geo
+      required: true
   type_of_place:
     question:
       de: Was ist der Ort des Geschehens gewesen?

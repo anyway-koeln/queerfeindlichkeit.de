@@ -220,23 +220,52 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     input_component = <>
       {
         !!input.options
-          ? input.options.map((option, index) => <div
-              key={option._id}
-              className="body2"
-              style={{ whiteSpace: 'nowrap' }}
-            >
-            <span className={classes.button_key}>
-              {ABC[index]}
-            </span>
-            <IonButton
-              style={{ verticalAlign: 'middle' }}
-              fill={value.has(option._id) ? 'solid' : 'outline'}
-              size="small"
-              onClick={() => handleChoiceClick(option._id)}
-            >
-              {option.de}
-            </IonButton>
-          </div>)
+          ? input.options.map((option, index) => {
+            const thisOption = option.de
+
+            let title = null
+            let description = null
+
+            if (typeof thisOption === 'string' || thisOption instanceof String) {
+              title = thisOption
+            } else {
+              if (!!thisOption.title) {
+                title = thisOption.title
+              }
+              if (!!thisOption.description) {
+                description = thisOption.description
+              }
+            }
+
+            if (title === null) {
+              return null
+            }
+
+            return <div
+                key={option._id}
+                className="body2"
+                style={{ whiteSpace: 'nowrap', display: 'flex', marginBottom: '8px' }}
+              >
+              <span className={classes.button_key}>
+                {ABC[index]}
+              </span>
+              <p className="body2" style={{ whiteSpace: 'normal', margin: '0' }}>
+                <IonButton
+                  style={{ verticalAlign: 'middle', margin: '0 0 2px 0' }}
+                  fill={value.has(option._id) ? 'solid' : 'outline'}
+                  size="small"
+                  onClick={() => handleChoiceClick(option._id)}
+                >
+                  {title}
+                </IonButton>
+                {
+                  description !== null
+                  ? <span style={{ margin: '0 0 0 8px' }}>{description}</span>
+                  : null
+                }
+              </p>
+            </div>
+          })
         : null
       }
       {

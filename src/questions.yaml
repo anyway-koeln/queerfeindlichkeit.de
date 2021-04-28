@@ -22,23 +22,33 @@ questions:
         street:
           de: offene Straße, Plätze, Parks und Natur
         transport:
-          de: ÖPNV (Straßenbahn, Bus, Bahn, U-Bahn, Haltestellen, Bahnhöfe) & andere Transportmittel (Taxis, Mitfahrgelegenheit etc.)
+          de:
+            title: ÖPNV
+            description: (Straßenbahn, Bus, Bahn, U-Bahn, Haltestellen, Bahnhöfe) & andere Transportmittel (Taxis, Mitfahrgelegenheit etc.)
         school:
-          de: Bildungseinreichtung (Schule, Uni, Berufsschule, …)
+          de:
+            title: Bildungseinreichtung
+            description: (Schule, Uni, Berufsschule, …)
         work:
           de: Arbeit
         going_out:
           de: Gastronomie, Bar & Club
         event:
-          de: Events (Konzerte, Festivals, Straßen- und Volksfeste, Sportveranstaltungen etc.)
+          de:
+            title: Events
+            description: (Konzerte, Festivals, Straßen- und Volksfeste, Sportveranstaltungen etc.)
         health_service:
-          de: Gesundheitseinrichtung (Krankenhaus, Arztpraxis, Rettungswagen etc.)
+          de:
+            title: Gesundheitseinrichtung
+            description: (Krankenhaus, Arztpraxis, Rettungswagen etc.)
         state_service:
           de: Behörden, Verwaltungseinrichtungen, Bürgerservices und -büros
         sport:
           de: Sporteinrichtung und -vereine
         youthcenter:
-          de: Jugendeinrichtung (Jugendtreff, Jugendzentrum, Musikschule, Kunstschule, Medienprojekte...)
+          de:
+            title: Jugendeinrichtung
+            description: (Jugendtreff, Jugendzentrum, Musikschule, Kunstschule, Medienprojekte...)
   how_many_victims:
     question:
       de: Wie viele Personen waren von dem Vorfall betroffen?
@@ -86,17 +96,27 @@ questions:
       write_in: true
       options:
         verbal:
-          de: Verbale Gewalt (Beschimpfung, Beleidigung, Verleumdung, ...)
+          de:
+            title: Verbale Gewalt
+            description: (Beschimpfung, Beleidigung, Verleumdung, ...)
         psychological:
-          de: Psychische Gewalt (Ausgrenzung, Drohen, unter Druck setzen, Mobbing, Schikane, Kontaktverbote zu bestimmten Personen, Isolation, etc.)
+          de:
+            title: Psychische Gewalt
+            description: (Ausgrenzung, Drohen, unter Druck setzen, Mobbing, Schikane, Kontaktverbote zu bestimmten Personen, Isolation, etc.)
         physical:
           de: Körperliche Gewalt
         economic:
-          de: Ökonomische Gewalt (z.B. Taschengeldentzug, Handy weggenommen)
+          de:
+            title: Ökonomische Gewalt
+            description: (z.B. Taschengeldentzug, Handy weggenommen)
         sexual:
-          de: Sexualisierte Gewalt (Nötigung zu sexuellen Handlungen etc.)
+          de:
+            title: Sexualisierte Gewalt
+            description: (Nötigung zu sexuellen Handlungen etc.)
         structural:
-          de: Strukturelle Gewalt (Strukturelle Gewalt hindert Individuen daran, ihre Potenziale und Möglichkeiten voll zu entfalten. Sie wird nicht direkt von einem:r Täter:in ausgeübt, sondern hat systemischen Charakter, z.B. Wissen über sexuelle Orientierung geschlecht. Identität nicht in der Schule vermitteln, fehlende Toiletten für das 3. Geschlecht, Mangel an geschlechterdiverse Sprache)
+          de:
+            title: Strukturelle Gewalt
+            description: (Strukturelle Gewalt hindert Individuen daran, ihre Potenziale und Möglichkeiten voll zu entfalten. Sie wird nicht direkt von einem:r Täter:in ausgeübt, sondern hat systemischen Charakter, z.B. Wissen über sexuelle Orientierung geschlecht. Identität nicht in der Schule vermitteln, fehlende Toiletten für das 3. Geschlecht, Mangel an geschlechterdiverse Sprache)
   what_happened:
     question:
       de: Was ist dir genau passiert und wie hast du dich dabei gefühlt?
@@ -112,21 +132,31 @@ questions:
       write_in: true
       options:
         nowhere:
-          de: Nirgends gemeldet.
+          de: Nirgends gemeldet
         just_talked:
-          de: Nein, aber mit anderen Personen darüber geredet (z.B. Freunde, Familie, Bekannte)
+          de:
+            title: Nein, aber mit anderen Personen darüber geredet
+            description: (z.B. Freunde, Familie, Bekannte)
         police:
-          de: Bei Polizei.
+          de: Bei der Polizei
         state_authority:
-          de: Bei einer Behörde (z.B. Jugendamt, Schulamt, Antidiskriminierungsstelle)
+          de:
+            title: Bei einer Behörde
+            description: (z.B. Jugendamt, Schulamt, Antidiskriminierungsstelle)
         pedagogical_staff:
-          de: Bei pädagogischen oder betreuenden Personal (z.B. Lehrer:in, Sozialarbeiter:in, Trainer:in)
+          de:
+            title: Bei pädagogischen oder betreuenden Personal
+            description: (z.B. Lehrer:in, Sozialarbeiter:in, Trainer:in)
         work:
-          de: Auf der Arbeit (z.B. Chef, Personabteilung, Mitarbeitendenvertretung, Diversitystelle)
+          de:
+            title: Auf der Arbeit
+            description: (z.B. Chef, Personabteilung, Mitarbeitendenvertretung, Diversitystelle)
         victim_support:
-          de: Bei Opferhilfen (z.B. Opferberatung, Überfalltelefon, Anti-Gewalt-Stellen)
+          de:
+            title: Bei Opferhilfen
+            description: (z.B. Opferberatung, Überfalltelefon, Anti-Gewalt-Stellen)
         owner:
-          de: Eigentümer:inn / Mitarbeiter:innen der Einrichtung.
+          de: Eigentümer:in / Mitarbeiter:innen der Einrichtung
   age:
     question:
       de: Wie alt warst du zur Tat bzw. zum Beginn der Tat?
@@ -140,7 +170,7 @@ questions:
     input:
       type: choice
       options:
-        0:
+        0.0:
           de: Sehr wenig
         0.2:
           de: Gar nicht
@@ -150,7 +180,7 @@ questions:
           de: Mittelmäßig
         0.8:
           de: Stark
-        1:
+        1.0:
           de: Sehr stark
   feedback:
     question:

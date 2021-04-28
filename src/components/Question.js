@@ -110,7 +110,9 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
 
   const storeGeoValue = useCallback(value => {
     const newValueSet = new Set()
-    newValueSet.add(value)
+    if (!!value) {
+      newValueSet.add(value)
+    }
     setValueBoth(newValueSet)
   }, [setValueBoth])
 

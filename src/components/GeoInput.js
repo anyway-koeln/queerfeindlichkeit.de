@@ -163,9 +163,25 @@ function GeoInput({ onChange, defaultValue }) {
       scrollWheelZoom={false}
       zoomControl={false}
     >
-      <TileLayer
+      {/* <TileLayer
         attribution='© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      /> */}
+      {/* <TileLayer
+        attribution='© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors | © <a href="https://carto.com/attributions" target="_blank" rel="noreferrer">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        subdomains="abcd"
+        maxZoom={19}
+      /> */}
+      {/* <TileLayer
+        attribution='© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors'
+        url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+        subdomains="ab"
+        maxZoom={19}
+      /> */}
+      <TileLayer
+        attribution='<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a> <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer">© Mapbox</a>'
+        url="https://api.mapbox.com/styles/v1/qiekub/cko1ikam20wgq18p9wd200uy0/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicWlla3ViIiwiYSI6ImNrbzFpY3NtZjA4dXQyb3M1OGU5czNqZzYifQ.UFFb9Vh5VldqZzdjempXPQ"
       />
 
       {

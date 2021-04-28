@@ -91,7 +91,7 @@ function MapEventHandler({ onMap, onClick }) {
   return null
 }
 
-const geoPrecision = 50
+const geoPrecision = 100
 const geoShift = 0.5 / geoPrecision
 
 function useRectangle({ lat, lng }) {

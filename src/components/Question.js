@@ -256,7 +256,10 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       }
     </>
   } else if (input.type === 'geo') {
-    input_component = <GeoInput onChange={storeGeoValue} defaultValue={firstDefaultValue} />
+    input_component = <>
+      <GeoInput onChange={storeGeoValue} defaultValue={firstDefaultValue} />
+      <p>{value}</p>
+    </>
   }
 
   return (

@@ -182,6 +182,73 @@ questions:
           de: Stark
         _1.0:
           de: Sehr stark
+  sexual_orientation:
+    question:
+      de: Sexuelle Orientierung/Identität
+    description:
+      de: In den nächsten drei Fragen geht es um deine Orientierung/Identität.
+    input:
+      type: choice
+      multiple: true
+      write_in: true
+      options:
+        homo:
+          de:
+            title: homosexuell
+            description: (lesbisch, schwul)
+        bi:
+          de:
+            title: bisexuell
+            description: (bi+, pansexuell, bicurious, …)
+        a:
+          de:
+            title: a_sexuell
+            description: (asexuell, nonssexuell, lithsexuell, Novosexualität, Omnisexualität…)
+        hetero:
+          de: heterosexuell
+  romantic_orientation:
+    question:
+      de: Romatische Orientierung/Identität
+    input:
+      type: choice
+      multiple: true
+      write_in: true
+      options:
+        homo:
+          de:
+            title: homoromantisch
+            description: (lesbisch, schwul, Same Gender Loving, …)
+        bi:
+          de:
+            title: biromantisch
+            description: (panromantisch, Omniromantik, …)
+        a:
+          de:
+            title: a_romantisch
+            description: (aro, nonromantisch, aromantic, nonromantic, lithromantisch, …)
+        hetero:
+          de: heteroromantisch
+  gender_identity:
+    question:
+      de: Geschlechtsidentität
+    input:
+      type: choice
+      multiple: true
+      write_in: true
+      options:
+        cis:
+          de:
+            title: cis
+            description: |
+              Cis wird benutzt, um auszudrücken, dass eine Person sich mit dem Geschlecht identifiziert, dem sie bei der Geburt zugewiesen wurde. (Quelle: Queer Lexikon)
+        non_binary:
+          de:
+            title: nicht-binär
+            description: (nicht-binär, weder*noch, genderqueer, genderfluid, gender nonconforming, gendervariant, gender-gleichgültig, greygender, demigender, multigender, bigender…)
+        trans:
+          de: trans*
+        inter:
+          de: inter*
   feedback:
     question:
       de: Wie findest du den Fragebogen?

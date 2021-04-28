@@ -2,10 +2,12 @@
   display: inline-block;
   vertical-align: middle;
   width: 12px;
+  min-width: 12px;
   text-align: center;
   color: var(--secondary);
   font-weight: bold;
   margin: 0 16px 0 0;
+  line-height: 27px;
 }
 
 .question input,

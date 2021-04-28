@@ -203,7 +203,7 @@ function Survey() {
           const thisQuestion = questionsById[answer._id]
 
           const value = [...answer.value]
-          if (thisQuestion.input.select_multiple === true) {
+          if (thisQuestion.input.multiple === true) {
             obj[answer._id] = value
           } else {
             obj[answer._id] = value[0]
@@ -241,7 +241,7 @@ function Survey() {
           return `## ${
             thisQuestion.question.de
           }\n\n${
-            thisQuestion.input.select_multiple === true
+            thisQuestion.input.multiple === true
             ? [...answer.value].map(thisValue => `- ${getValueTitle(thisValue, thisQuestion.input.options)}`).join('\n')
             : getValueTitle([...answer.value][0], thisQuestion.input.options)
           }`
@@ -318,7 +318,7 @@ function Survey() {
                         return <div key={answer._id}>
                           <div className="subtitle1">{thisQuestion.question.de}</div>
                           {
-                            thisQuestion.input.select_multiple === true
+                            thisQuestion.input.multiple === true
                               ? <p><ul>
                                 {[...answer.value].map(thisValue => <li>{getValueTitle(thisValue, thisQuestion.input.options)}</li>)}
                               </ul></p>

@@ -68,7 +68,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       if (index >= 0 && input.options[index]) {
         const option = input.options[index]._id
 
-        if (input.select_multiple === true) {
+        if (input.multiple === true) {
           const newValue = value
           if (newValue.has(option)) {
             newValue.delete(option)
@@ -136,7 +136,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       }
     }
 
-    if (input.select_multiple === true) {
+    if (input.multiple === true) {
       const newValue = value
       newValue.delete(writeInValue) // delete old value
       if (newValue.has(option)) {
@@ -154,7 +154,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     }
 
     setWriteInValue(option)
-  }, [input.type, input.select_multiple, value, writeInValue, setValueBoth, setWriteInValue])
+  }, [input.type, input.multiple, value, writeInValue, setValueBoth, setWriteInValue])
 
   const handleWriteInFocus = useCallback(() => {
     setWriteInIsActive(true)
@@ -166,7 +166,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   // END write in
 
   const handleChoiceClick = useCallback(option => {
-    if (input.select_multiple === true) {
+    if (input.multiple === true) {
       const newValue = value
       if (newValue.has(option)) {
         newValue.delete(option)
@@ -196,7 +196,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
         })
       }
     }
-  }, [value, setValueBoth, onSubmit, input.select_multiple, _id, writeInValue])
+  }, [value, setValueBoth, onSubmit, input.multiple, _id, writeInValue])
 
   const handleSubmit = useCallback(() => {
     if (!!onSubmit && (!input.required || (input.required && hasValue))) {

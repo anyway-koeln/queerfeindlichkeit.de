@@ -92,7 +92,7 @@ questions:
     input:
       type: choice
       # required: true
-      select_multiple: true
+      multiple: true
       write_in: true
       options:
         verbal:

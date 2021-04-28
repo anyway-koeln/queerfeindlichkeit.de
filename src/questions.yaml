@@ -249,6 +249,16 @@ questions:
           de: trans*
         inter:
           de: inter*
+  migration_background:
+    question:
+      de: Hast du Migrationshintergrund?
+    input:
+      type: choice
+      options:
+        yes:
+          de: Ja
+        no:
+          de: Nein
   feedback:
     question:
       de: Wie findest du den Fragebogen?

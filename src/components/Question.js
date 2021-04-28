@@ -223,7 +223,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   let input_component = null
   if (input.type === 'number') {
     input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={firstDefaultValue} />
-  } else if (input.type === 'short_text') {
+  } else if (input.type === 'short_text' || input.type === 'date') { // TODO: date sollte ein eigenes echtes input sein, das direkt überprüft, ob es ein echtes Datum ist.
     input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'long_text') {
     input_component = <textarea

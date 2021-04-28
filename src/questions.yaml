@@ -164,6 +164,13 @@ questions:
       de: Schätze, wenn du es nicht genau weißt.
     input:
       type: number
+  when_happened:
+    question:
+      de: Wann war die Tat?
+    description:
+      de: Schätze, wenn du es nicht genau weißt.
+    input:
+      type: date
   mental_stress:
     question:
       de: Wie sehr hat dich der Vorfall belastet?

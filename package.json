@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "graphql": "^15.5.0",
+    "intl-pluralrules": "^1.2.2",
     "js-yaml": "^4.1.0",
     "leaflet": "^1.7.1",
     "leaflet-geosearch": "^3.3.1",

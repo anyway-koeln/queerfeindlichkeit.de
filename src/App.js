@@ -2,6 +2,8 @@ import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { IonButton } from '@ionic/react'
 
+import { Localized } from './Localized.js'
+
 import './App.module.css'
 
 import {
@@ -48,11 +50,12 @@ https://developers.google.com/search/docs/guides/search-gallery
 */
 
 function SuspenseWrapper({ children }) {
-  return <Suspense fallback={<div>Loading...</div>}>
+  return <Suspense fallback={<div><Localized id="loading_content" /></div>}>
     {children}
   </Suspense>
 }
 
+// function App({ locales, currentLocale, onLanguageChange }) {
 function App() {
   let vorfallMeldenIsOpen = useRouteMatch("/vorfall-melden")
   vorfallMeldenIsOpen = vorfallMeldenIsOpen !== null
@@ -148,4 +151,5 @@ function App() {
   )
 }
 
+// export default withLocalization(App)
 export default App

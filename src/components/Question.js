@@ -4,6 +4,8 @@ import computeHasValue from '../functions/computeHasValue.js'
 
 import { IonButton } from '@ionic/react'
 
+import { withLocalization, Localized } from '../Localized.js'
+
 import classes from './Question.module.css'
 import GeoInput from './GeoInput.js'
 
@@ -12,7 +14,7 @@ const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
-function Question({ _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
+function Question({ getString, _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
@@ -222,9 +224,9 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
 
   let input_component = null
   if (input.type === 'number') {
-    input_component = <input ref={inputRef} type="number" placeholder="Enter a number…" min={0} onChange={storeValue} defaultValue={firstDefaultValue} />
+    input_component = <input ref={inputRef} type="number" placeholder={getString('placeholder_number')} min={0} onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'short_text' || input.type === 'date') { // TODO: date sollte ein eigenes echtes input sein, das direkt überprüft, ob es ein echtes Datum ist.
-    input_component = <input ref={inputRef} type="text" placeholder="Enter a short text…" onChange={storeValue} defaultValue={firstDefaultValue} />
+    input_component = <input ref={inputRef} type="text" placeholder={getString('placeholder_short_text')} onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'long_text') {
     input_component = <textarea
       ref={inputRef}
@@ -232,7 +234,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
       onFocus={handleWriteInFocus}
       onBlur={handleWriteInBlur}
       defaultValue={firstDefaultValue}
-      placeholder="Enter a text…"
+      placeholder={getString('placeholder_long_text')}
     />
   } else if (input.type === 'choice') {
     input_component = <>
@@ -292,7 +294,7 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
             <input
               ref={inputRef}
               type="text"
-              placeholder="Enter a short text as your own answer…"
+              placeholder={getString('placeholder_write_in_short_text')}
               onChange={storeWriteInValue}
               onFocus={handleWriteInFocus}
               onBlur={handleWriteInBlur}
@@ -313,13 +315,13 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
     <div className={classes.question}>
       <h3 className="subtitle1">{question.de}</h3>
       {!!description ? description.de.split('\n').filter(Boolean).map(line => <p>{line}</p>) : null}
-      {input.required ? <p style={{ color: 'darkred', fontWeight: 'bold' }}>Required!</p> : null}
+      {input.required ? <p style={{ color: 'darkred', fontWeight: 'bold' }}><Localized id="required_question" /></p> : null}
       {input_component}
       {
         (hasValue || !input.required)
         && (input.type !== 'choice' || input.write_in === true)
           ? <p>
-            <IonButton style={{ verticalAlign: 'middle', margin: '0 16px 0 0' }} size="default" onClick={handleSubmit}>OK</IonButton>
+            <IonButton style={{ verticalAlign: 'middle', margin: '0 16px 0 0' }} size="default" onClick={handleSubmit}><Localized id="submit_question" /></IonButton>
             {
               (
                 input.type === 'number'
@@ -328,7 +330,9 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
                 || (input.type === 'choice' && input.write_in === true && hasValue)
               )
               && (!input.required || (input.required && hasValue))
-              ? <span style={{ verticalAlign: 'middle' }}>or press <strong>Enter ↵</strong></span>
+              ? <span style={{ verticalAlign: 'middle' }}>
+                <Localized id="press_enter_info" elems={{strong: <strong/>}} />
+              </span>
               : null
             }
           </p>
@@ -338,4 +342,4 @@ function Question({ _id, question, description, input, defaultValue: defaultValu
   )
 }
 
-export default Question
+export default withLocalization(Question)

@@ -326,7 +326,7 @@ function Survey() {
                               </ul></p>
                               : getValueTitle([...answer.value][0], thisQuestion.input.options)
                                 .split('\n')
-                                .map(line => <p>{line}</p>)
+                                .map(line => <p key={line}>{line}</p>)
                           }
                         </div>
                       })

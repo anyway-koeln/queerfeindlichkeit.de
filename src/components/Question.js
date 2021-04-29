@@ -314,7 +314,7 @@ function Question({ fluentByObject, getString, _id, question, description, input
   return (
     <div className={classes.question}>
       <h3 className="subtitle1">{fluentByObject(question)}</h3>
-      {!!description ? fluentByObject(description, '').split('\n').filter(Boolean).map(line => <p>{line}</p>) : null}
+      {!!description ? fluentByObject(description, '').split('\n').filter(Boolean).map(line => <p key={line}>{line}</p>) : null}
       {input.required ? <p style={{ color: 'darkred', fontWeight: 'bold' }}><Localized id="required_question" /></p> : null}
       {input_component}
       {

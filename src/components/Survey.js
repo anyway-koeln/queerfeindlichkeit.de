@@ -3,8 +3,6 @@ import yaml from 'js-yaml'
 
 import { IonButton } from '@ionic/react'
 
-import { Localized } from '../Localized.js'
-
 import classes from './Survey.module.css'
 import Question from './Question.js'
 import useKeyPress from '../hooks/useKeyPress.js'
@@ -277,7 +275,7 @@ function Survey() {
                 <h3>Vorfall melden</h3>
                 <p>Hier kannst du einen queerfeindlichen Übergriff melden.</p>
                 <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden.</p>
-                <IonButton size="default" onClick={gotoFirstQuestion}><Localized id="start_survey" /></IonButton>
+                <IonButton size="default" onClick={gotoFirstQuestion}>Los gehts</IonButton>
             </>
             : (
               !!currentQuestion
@@ -294,7 +292,7 @@ function Survey() {
                 ? <>
                   <h3>Hmmm…</h3>
                   <p>Du hast keine Angaben gemacht. Beschreib deinen Vorfall bitte etwas detailierter.</p>
-                  <IonButton size="default" onClick={toTheBeginning}><Localized id="back_to_beginning" /></IonButton>
+                  <IonButton size="default" onClick={toTheBeginning}>Zurück zum Start</IonButton>
                 </>
                 : (
                   uploaded
@@ -305,7 +303,7 @@ function Survey() {
                             <p>Du möchtest wissen, wie es weitergeht? Auf <a href="https://www.instagram.com/queerfeindlichkeit/" target="_blank" rel="noreferrer">Instagram</a> und  <a href="https://twitter.com/anyway_koeln" target="_blank" rel="noreferrer">Twitter</a> veröffentlichen wir Daten und helfen dir gegen Queerfeindlichkeit anzukommen.</p>
                     <hr />
                     <p>Hier kannst du dir noch Deine Daten abspeichern:</p>
-                    <IonButton size="default" onClick={handleDownloadData}><Localized id="download_your_incident_data" /></IonButton>
+                    <IonButton size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
                   </>
                   : <>
                     <h3>Deine Angaben</h3>
@@ -332,10 +330,10 @@ function Survey() {
                       })
                     }
                     <hr />
-                    <IonButton fill="outline" size="default" onClick={handleDownloadData}><Localized id="download_your_incident_data" /></IonButton>
-                    <IonButton size="default" onClick={handleSendData}><Localized id="submit_incident" /></IonButton>
-                    {mutationLoading && <p><Localized id="uploading" /></p>}
-                    {mutationError && <p><Localized id="error_while_uploading" /></p>}
+                    <IonButton fill="outline" size="default" onClick={handleDownloadData}>Daten runterladen</IonButton>
+                    <IonButton size="default" onClick={handleSendData}>Vorfall eintragen</IonButton>
+                    {mutationLoading && <p>Uploading...</p>}
+                    {mutationError && <p>Error :( Please try again</p>}
                   </>
                 )
               )
@@ -344,12 +342,8 @@ function Survey() {
         </div>
       </div>
       <div className={classes.actions}>
-        <IonButton disabled={currentQuestionsIndex <= -1} fill="outline" size="default" onClick={prevQuestion}>
-          <Localized id="prev" />
-        </IonButton>
-        <IonButton disabled={currentQuestionsIndex >= questions.length || (!!currentQuestion && !!currentQuestion.input && currentQuestion.input.required)} fill="outline" size="default" onClick={nextQuestion}>
-          <Localized id="next" />
-        </IonButton>
+        <IonButton disabled={currentQuestionsIndex <= -1} fill="outline" size="default" onClick={prevQuestion}>zurück</IonButton>
+        <IonButton disabled={currentQuestionsIndex >= questions.length || (!!currentQuestion && !!currentQuestion.input && currentQuestion.input.required)} fill="outline" size="default" onClick={nextQuestion}>vor</IonButton>
       </div>
     </div>
   )

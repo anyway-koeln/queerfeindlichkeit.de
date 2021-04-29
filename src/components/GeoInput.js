@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 
 import { IonButton } from '@ionic/react'
 
-import { withLocalization } from '../Localized.js'
-
 import { MapContainer, TileLayer, Circle, Rectangle, useMapEvent, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -26,7 +24,7 @@ function MapScale() {
   return null
 }
 
-function MapSearchTemp({ getString, map }) {
+function MapSearchTemp({ map }) {
   const [typingTimeout, setTypingTimeout] = useState()
 
   const [provider, setProvider] = useState()
@@ -58,10 +56,9 @@ function MapSearchTemp({ getString, map }) {
     className={classes.searchInput}
     type="text"
     onChange={handleChange}
-    placeholder={getString('placeholder_search')}
+    placeholder="Search…"
   />
 }
-const MapSearch = withLocalization(MapSearchTemp)
 
 function MapZoom({ map }) {
   const handleZoomIn = useCallback(event => {

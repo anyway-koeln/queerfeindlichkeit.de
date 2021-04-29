@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.15",
+    "@fluent/bundle": "^0.16.1",
+    "@fluent/langneg": "^0.5.2",
+    "@fluent/react": "^0.13.1",
     "@ionic/react": "^5.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

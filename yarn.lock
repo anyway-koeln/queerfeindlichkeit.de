@@ -1189,6 +1189,30 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fluent/bundle@^0.16.1":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@fluent/bundle/-/bundle-0.16.1.tgz#2d359eb2eca4c6053335258f6d3e1025f3fd3b1d"
+  integrity sha512-l/y8uvAC1vAIEGXfbt97g36s9gJ6wdEFRWCJo4vtoxD1e210MxBAXfLhU+wfzaatlxwh+HjJ15G41ee6V8Y4ww==
+
+"@fluent/langneg@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@fluent/langneg/-/langneg-0.5.2.tgz#ae73cd5f3e59b6232715591e7e3f6a2c2da8a5bd"
+  integrity sha512-6l8BfDB9mmNaeRhqu+N5BCWrUU+ZSKouyabMDnG6IDuurf+p2AAIvW0Wxe1saYYJ6vQ5QRdbT9NXtYZFz2ay6Q==
+
+"@fluent/react@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@fluent/react/-/react-0.13.1.tgz#c6337f6031220baf78c08c9f31d2c6ded4531508"
+  integrity sha512-0hvWZojJgc97J1V2nI2COvStjKOD3blYGk1EPdDyhK+OhddsZR4Gp9S1c4cOdxNjLYbz1sBwBOMOKP+tY6Zarg==
+  dependencies:
+    "@fluent/sequence" "0.5.0"
+    cached-iterable "^0.2.1"
+    prop-types "^15.7.2"
+
+"@fluent/sequence@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@fluent/sequence/-/sequence-0.5.0.tgz#6349b614711df2d8ed256598fa31a757fe032539"
+  integrity sha512-70LhnbPO/sO2rI2vHws66QwKq9a7PKiEN0hrc65xY3LzWq3AlATZnt+EmFG1ihmPI+5mqGPnJMAdpp3qze3X2Q==
+
 "@graphql-typed-document-node/core@^3.0.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
@@ -3086,6 +3110,11 @@ cache-base@^1.0.1:
     to-object-path "^0.3.0"
     union-value "^1.0.0"
     unset-value "^1.0.0"
+
+cached-iterable@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/cached-iterable/-/cached-iterable-0.2.1.tgz#723958f5e7adc74c96bedb10b426bdfd95f2fe6d"
+  integrity sha512-8zAVjMjdn/S/QXJaOnqsko0+ZJzXT2Dum2u9TMGg5YR9fxONPrUjuO9VYqnb1AoldXeYVAcNJLgT5Q8WaIJSgA==
 
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
@@ -5924,6 +5953,11 @@ internmap@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/internmap/-/internmap-1.0.1.tgz#0017cc8a3b99605f0302f2b198d272e015e5df95"
   integrity sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==
+
+intl-pluralrules@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/intl-pluralrules/-/intl-pluralrules-1.2.2.tgz#2b73542a9502a8a3a742cdd917f3d969fb5482fe"
+  integrity sha512-SBdlNCJAhTA0I0uHg2dn7I+c6BCvSVk6zJ/01ozjwJK7BvKms9RH3w3Sd/Ag24KffZ/Yx6KJRCKAc7eE8TZLNg==
 
 invariant@^2.2.4:
   version "2.2.4"

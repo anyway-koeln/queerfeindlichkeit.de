@@ -3,6 +3,7 @@ import {
   Localized as LocalizedOriginal,
   // withLocalization,
 } from '@fluent/react'
+import { negotiateLanguages } from '@fluent/langneg'
 
 import { FluentContext } from '../node_modules/@fluent/react/esm/context.js'
 
@@ -27,7 +28,34 @@ function withLocalization(Inner) {
 
     const getString = (id, args, fallback) => l10n.getString(id, args, fallback || ' ')
 
-    return React.createElement(Inner, { getString, ...props })
+    const fluentByObject = (object, fallback) => {
+      if (!(!!fallback)) {
+        fallback = null
+      }
+
+      if (!!object) {
+        const globalSupportedLocales = l10n.supportedLocales || []
+        const thisSupportedLocales = Object.keys(object).filter(locale => globalSupportedLocales.includes(locale))
+
+        const currentLocales = negotiateLanguages(
+          l10n.userLocales,
+          thisSupportedLocales,
+          { defaultLocale: l10n.defaultLocale }
+        )
+
+        for (const locale of currentLocales) {
+          if (!!object[locale]) {
+            return object[locale]
+          }
+        }
+
+        return fallback
+      }
+
+      return fallback
+    }
+
+    return React.createElement(Inner, { fluentByObject, getString, ...props })
   }
   return WithLocalization
 }

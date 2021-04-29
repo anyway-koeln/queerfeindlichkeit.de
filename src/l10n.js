@@ -72,7 +72,12 @@ export function AppLocalizationProvider({ userLocales, children, onLocaleChange 
       }
 
       const generateBundles = await createMessagesGenerator(currentLocales)
-      setBundles(new ReactLocalization(generateBundles()))
+
+      const new_bundles = new ReactLocalization(generateBundles())
+      new_bundles.userLocales = userLocales
+      new_bundles.defaultLocale = _defaultLocale_
+      new_bundles.supportedLocales = _supportedLocales_
+      setBundles(new_bundles)
     }
     loadBundles()
   }, [userLocales, onLocaleChange])

@@ -14,7 +14,7 @@ const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
-function Question({ getString, _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
+function Question({ fluentByObject, getString, _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
@@ -241,7 +241,7 @@ function Question({ getString, _id, question, description, input, defaultValue: 
       {
         !!input.options
           ? input.options.map((option, index) => {
-            const thisOption = option.de
+            const thisOption = fluentByObject(option)
 
             let title = null
             let description = null
@@ -313,8 +313,8 @@ function Question({ getString, _id, question, description, input, defaultValue: 
 
   return (
     <div className={classes.question}>
-      <h3 className="subtitle1">{question.de}</h3>
-      {!!description ? description.de.split('\n').filter(Boolean).map(line => <p>{line}</p>) : null}
+      <h3 className="subtitle1">{fluentByObject(question)}</h3>
+      {!!description ? fluentByObject(description, '').split('\n').filter(Boolean).map(line => <p>{line}</p>) : null}
       {input.required ? <p style={{ color: 'darkred', fontWeight: 'bold' }}><Localized id="required_question" /></p> : null}
       {input_component}
       {

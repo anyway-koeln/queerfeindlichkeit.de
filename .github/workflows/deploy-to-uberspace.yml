@@ -27,7 +27,7 @@ jobs:
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
-            cd ~/queerfeindlichkeit_frontend/ && git pull && yarn && yarn build && supervisorctl restart queerfeindlichkeit_frontend;
+            cd ~/queerfeindlichkeit_frontend/ && git pull && yarn && yarn build && rm -R ./build_uberpace && mv build build_uberpace && supervisorctl restart queerfeindlichkeit_frontend;
           host: bergelmir.uberspace.de
           username: anyway
           password: ${{ secrets.UBERSPACE_ANYWAY_PASSWORD }}

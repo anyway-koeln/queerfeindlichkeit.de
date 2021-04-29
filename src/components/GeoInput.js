@@ -24,7 +24,7 @@ function MapScale() {
   return null
 }
 
-function MapSearchTemp({ map }) {
+function MapSearch({ map, onChange }) {
   const [typingTimeout, setTypingTimeout] = useState()
 
   const [provider, setProvider] = useState()

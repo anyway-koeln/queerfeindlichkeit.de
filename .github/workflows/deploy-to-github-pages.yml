@@ -1,5 +1,5 @@
 # This is a workflow to deploy the react code to GitHub Pages.
-name: Deploy to GitHub Pages
+name: Deploy to (GitHub Pages and) Uberspace
 
 # Controls when the action will run.
 on:
@@ -39,4 +39,12 @@ jobs:
         with:
           email: thomas.rosen@me.com
           build_dir: build
-          cname: queerfeindlichkeit.de
+          cname: ""
+      - name: run deploy commands on uberspace
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cd ~/queerfeindlichkeit_frontend/ && git pull && supervisorctl restart queerfeindlichkeit_frontend;
+          host: bergelmir.uberspace.de
+          username: anyway
+          password: ${{ secrets.UBERSPACE_ANYWAY_PASSWORD }}

@@ -275,8 +275,9 @@ function Survey() {
             currentQuestionsIndex === -1
             ? <>
                 <h3>Vorfall melden</h3>
-                <p>Hier kannst du einen queerfeindlichen Übergriff melden.</p>
-                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden.</p>
+                <p>Hier kannst du einen queerfeindlichen Vorfall melden.</p>
+                <p>Deine Daten dienen lediglich zur statistischen Auswertung. Sie führen nicht zu einer Anzeige bei der Polizei. Wir speichern deine Daten anonymiesiert.</p>
+                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden. Oder uns bei Instagram eine Nachricht schichen: <a href="https://instagram.com/queerfeindlichkeit" target="_blank" rel="noreferrer">@queerfeindlichkeit</a></p>
                 <IonButton size="default" onClick={gotoFirstQuestion}><Localized id="start_survey" /></IonButton>
             </>
             : (

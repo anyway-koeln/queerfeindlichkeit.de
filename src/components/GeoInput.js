@@ -26,7 +26,7 @@ function MapScale() {
   return null
 }
 
-function MapSearchTemp({ getString, map }) {
+function MapSearchTemp({ getString, map, onChange }) {
   const [typingTimeout, setTypingTimeout] = useState()
 
   const [provider, setProvider] = useState()
@@ -47,12 +47,13 @@ function MapSearchTemp({ getString, map }) {
           .then(function (result) {
             if (result.length > 0) {
               map.fitBounds(result[0].bounds)
+              onChange({ lat: result[0].y, lng: result[0].x })
               // map.setView({ lng: result[0].x, lat: result[0].y })
             }
           })
       }
     }, 500))
-  }, [typingTimeout, setTypingTimeout, provider, map])
+  }, [typingTimeout, setTypingTimeout, provider, map, onChange])
 
   return <input
     className={classes.searchInput}
@@ -125,37 +126,40 @@ function GeoInput({ onChange, defaultValue }) {
     })
   }, [])
 
+  const saveMapPos = useCallback(({ lat, lng }) => {
+    let roundedLat = Math.round(lat * geoPrecision) / geoPrecision
+    let roundedLng = Math.round(lng * geoPrecision) / geoPrecision
+
+    if (roundedLat === markerPos.lat && roundedLng === markerPos.lng) {
+      roundedLat = 0
+      roundedLng = 0
+      lat = 0
+      lng = 0
+    }
+
+    setPreciseMarkerPos({ lat, lng })
+    setMarkerPos({ lat: roundedLat, lng: roundedLng })
+
+    if (roundedLat === 0 && roundedLng === 0) {
+      onChange(null)
+    } else {
+      onChange(`${roundedLat}, ${roundedLng}`)
+    }
+  }, [markerPos, setPreciseMarkerPos, setMarkerPos, onChange])
+
   const handleMapClick = useCallback((event) => {
     // if (event.originalEvent.target.classList.contains('leaflet-container')) { // check if event is coming from the map
       let { lat, lng } = event.latlng
-
-      let roundedLat = Math.round(lat * geoPrecision) / geoPrecision
-      let roundedLng = Math.round(lng * geoPrecision) / geoPrecision
-
-      if (roundedLat === markerPos.lat && roundedLng === markerPos.lng) {
-        roundedLat = 0
-        roundedLng = 0
-        lat = 0
-        lng = 0
-      }
-
-      setPreciseMarkerPos({ lat, lng })
-      setMarkerPos({ lat: roundedLat, lng: roundedLng })
-
-      if (roundedLat === 0 && roundedLng === 0) {
-        onChange(null)
-      } else {
-        onChange(`${roundedLat}, ${roundedLng}`)
-      }
+      saveMapPos({ lat, lng })
     // }
-  }, [markerPos, setPreciseMarkerPos, setMarkerPos, onChange])
+  }, [saveMapPos])
 
   const handleMap = useCallback((newMap) => {
     setMap(newMap)
   }, [setMap])
 
   return <div className={classes.mapWrapper}>
-    <MapSearch map={map} />
+    <MapSearch map={map} onChange={saveMapPos}/>
     <MapZoom map={map} />
     <MapContainer
       className={classes.map}

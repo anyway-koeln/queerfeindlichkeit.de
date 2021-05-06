@@ -57,7 +57,7 @@ function AppLanguageWrapper() {
 ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
-      <Router basemname={`/${process.env.PUBLIC_URL}`}>
+      <Router>
         <ApolloProvider client={client}>
           <AppLanguageWrapper />
         </ApolloProvider>

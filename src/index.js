@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+import App from './pages/App'
 import reportWebVitals from './reportWebVitals'
 import { setupConfig } from '@ionic/react'
 import { HelmetProvider } from 'react-helmet-async'
@@ -10,7 +10,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { ApolloProvider } from '@apollo/client/react'
 
 import 'intl-pluralrules'
-import { AppLocalizationProvider, locales } from './l10n.js'
+import { AppLocalizationProvider, locales } from './components/fluent/l10n.js'
 
 const client = new ApolloClient({
   uri: 'https://api.queerfeindlichkeit.de/graphql',

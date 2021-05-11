@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { IonButton } from '@ionic/react'
 
-import { Localized } from './Localized.js'
+import { Localized } from '../components/fluent/Localized.js'
 
 import './App.module.css'
 
@@ -17,15 +17,15 @@ import {
 // import logo512 from './images/logo512.png'
 // import logo_wide2048 from './images/logo_wide2048.png'
 
-import Header from './components/Header.js'
-import Footer from './components/Footer.js'
-import Rainbow from './components/Rainbow.js'
+import Header from '../components/Header.js'
+import Footer from '../components/Footer.js'
+import Rainbow from '../components/Rainbow.js'
 
-const Survey = React.lazy(() => import('./components/Survey.js'))
-const Home = React.lazy(() => import('./components/Home.js'))
-const Blog = React.lazy(() => import('./components/Blog.js'))
-const Article = React.lazy(() => import('./components/Article.js'))
-const Story = React.lazy(() => import('./components/Story.js'))
+const Survey = React.lazy(() => import('./Survey.js'))
+const Home = React.lazy(() => import('./Home.js'))
+const Blog = React.lazy(() => import('./Blog.js'))
+const Article = React.lazy(() => import('./Article.js'))
+const Story = React.lazy(() => import('./Story.js'))
 
 const meta = {
   language: 'de',

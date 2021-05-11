@@ -1,5 +1,5 @@
 
-import ArticleCard from './ArticleCard.js'
+import ArticleCard from '../components/ArticleCard.js'
 import useData from '../hooks/useData.js'
 
 function Blog() {

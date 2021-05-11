@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import classes from './Home.module.css'
 
-import MapChooser from './MapChooser.js'
+import MapChooser from '../components/MapChooser.js'
 
 import useData from '../hooks/useData.js'
 

@@ -25,7 +25,7 @@ const _defaultLocale_ = 'de'
 
 
 async function fetchMessages(locale) {
-  const path = await import('./locales/' + locale + '.ftl')
+  const path = await import('../../locales/' + locale + '.ftl')
 
   const response = await fetch(path.default)
   const messages = await response.text()

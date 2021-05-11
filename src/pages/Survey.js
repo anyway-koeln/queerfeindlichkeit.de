@@ -3,10 +3,10 @@ import yaml from 'js-yaml'
 
 import { IonButton } from '@ionic/react'
 
-import { Localized } from '../Localized.js'
+import { Localized } from '../components/fluent/Localized.js'
 
 import classes from './Survey.module.css'
-import Question from './Question.js'
+import Question from '../components/Question.js'
 import useKeyPress from '../hooks/useKeyPress.js'
 import computeHasValue from '../functions/computeHasValue.js'
 

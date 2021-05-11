@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 
 import { IonButton } from '@ionic/react'
 
-import { withLocalization } from '../Localized.js'
+import { withLocalization } from './fluent/Localized.js'
 
 import { MapContainer, TileLayer, Circle, Rectangle, useMapEvent, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'

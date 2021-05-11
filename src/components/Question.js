@@ -4,7 +4,7 @@ import computeHasValue from '../functions/computeHasValue.js'
 
 import { IonButton } from '@ionic/react'
 
-import { withLocalization, Localized } from '../Localized.js'
+import { withLocalization, Localized } from './fluent/Localized.js'
 
 import classes from './Question.module.css'
 import GeoInput from './GeoInput.js'

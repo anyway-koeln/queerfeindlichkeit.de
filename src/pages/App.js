@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { IonButton } from '@ionic/react'
 
 import { Localized } from '../components/fluent/Localized.js'
 
@@ -9,7 +8,6 @@ import './App.module.css'
 import {
   Switch,
   Route,
-  NavLink,
   Redirect,
   useRouteMatch,
 } from 'react-router-dom'
@@ -119,16 +117,6 @@ function App() {
         ? <SuspenseWrapper children={<Survey />} />
         : <>
           <Header />
-
-          <p style={{textAlign: 'center', margin: '64px 0'}}>
-            Hier entsteht ein Antidiskriminierungsprojekt des <a href="https://www.anyway-koeln.de/">anyway Köln</a> zum Thema Queerfeindlichkeit.
-          </p>
-
-          <nav style={{ textAlign: 'center', margin: '64px 0' }}>
-            <NavLink to="/"><IonButton>Home</IonButton></NavLink>
-            <NavLink to="/blog"><IonButton>Blog</IonButton></NavLink>
-            <NavLink to="/vorfall-melden"><IonButton>Vorfall melden</IonButton></NavLink>
-          </nav>
 
           <main id="main">
             <Switch>

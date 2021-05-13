@@ -1,0 +1,5 @@
+.articleRow {
+  display: flex;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

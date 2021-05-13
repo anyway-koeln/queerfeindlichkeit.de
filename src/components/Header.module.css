@@ -4,7 +4,13 @@ header {
 }
 
 header .logo{
-    max-height: 128px;
-    max-width: calc(100% - 128px);
-    padding: 64px;
+  max-height: 256px;
+  width: 1000px;
+  max-width: calc(100% - 64px);
+  padding: 64px 0;
+}
+@media (max-width: 600px) {
+  header .logo{
+    padding: 32px 0;
+  }
 }

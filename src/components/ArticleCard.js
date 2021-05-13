@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom'
-import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react'
+
+import classes from './ArticleCard.module.css'
 
 function Article({ article }) {
-  return (
-    <Link to={`/blog/${article.id}`}>
-      <IonCard style={{
-        display: 'inline-block'
-      }}>
-        <IonCardHeader>
-          <IonCardSubtitle>{article.date_published.toISOString()}</IonCardSubtitle>
-          <IonCardTitle>{article.title}</IonCardTitle>
-        </IonCardHeader>
-      </IonCard>
-    </Link>
-  )
+  return <Link to={`/blog/${article.id}`}>
+    <div className={classes.card}>
+      <p>{article.date_published.toISOString()}</p>
+      <h3>{article.title}</h3>
+    </div>
+  </Link>
 }
 
 export default Article

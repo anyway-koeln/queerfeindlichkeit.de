@@ -12,8 +12,8 @@
   --surface: #eee;
   --on-surface: var(--secondary-dark);
 
-  --card: white;
-  --on-card: var(--secondary-dark);
+  --card: var(--secondary);
+  --on-card: white;
 
   --divider: rgba(0,0,0,0.12);
 
@@ -101,7 +101,7 @@ h3.elevated,
   letter-spacing: -.009em;
   color: var(--secondary-dark);
 }
-h3,
+h3:not(.elevated),
 .typography-headline {
   font-size: 48px;
   line-height: 1.08349;
@@ -138,6 +138,13 @@ textarea,
   letter-spacing: -.022em;
   font-style: normal;
   color: var(--secondary-dark);
+}
+.button {
+  font-size: 17px;
+  line-height: 1.47059;
+  /* font-weight: 400; */
+  letter-spacing: -.022em;
+  font-style: normal;
 }
 
 hr {

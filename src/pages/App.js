@@ -19,8 +19,9 @@ import Header from '../components/Header.js'
 import Footer from '../components/Footer.js'
 import Rainbow from '../components/Rainbow.js'
 
+const LaunchHome = React.lazy(() => import('./LaunchHome.js'))
 const Survey = React.lazy(() => import('./Survey.js'))
-const Home = React.lazy(() => import('./Home.js'))
+// const Home = React.lazy(() => import('./Home.js'))
 const Blog = React.lazy(() => import('./Blog.js'))
 const Article = React.lazy(() => import('./Article.js'))
 const Story = React.lazy(() => import('./Story.js'))
@@ -125,7 +126,7 @@ function App() {
               <Route path="/story" children={<Redirect to="/" />} />
               <Route path="/blog/:id" children={<SuspenseWrapper children={<Article />} />} />
               <Route path="/blog" children={<SuspenseWrapper children={<Blog />} />} />
-              <Route path="/" exact={true} children={<SuspenseWrapper children={<Home />} />} />
+              <Route path="/" exact={true} children={<SuspenseWrapper children={<LaunchHome />} />} />
               <Route path="*" children={<Redirect to="/" />} />
             </Switch>
           </main>

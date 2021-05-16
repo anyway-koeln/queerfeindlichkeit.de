@@ -336,7 +336,7 @@ function Survey() {
                           {
                             thisQuestion.input.multiple === true
                               ? <div><ul>
-                                {[...answer.value].map(thisValue => <li>{getValueTitleElement(thisValue, thisQuestion.input.options)}</li>)}
+                                {[...answer.value].map(thisValue => <li key={thisValue}>{getValueTitleElement(thisValue, thisQuestion.input.options)}</li>)}
                               </ul></div>
                               : getValueTitleElement([...answer.value][0], thisQuestion.input.options)
                           }

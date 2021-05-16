@@ -13,8 +13,8 @@ import 'intl-pluralrules'
 import { AppLocalizationProvider, locales } from './components/fluent/l10n.js'
 
 const client = new ApolloClient({
-  // uri: 'https://api.queerfeindlichkeit.de/graphql',
-  uri: 'http://0.0.0.0:4000/graphql',
+  uri: 'https://api.queerfeindlichkeit.de/graphql',
+  // uri: 'http://0.0.0.0:4000/graphql',
   cache: new InMemoryCache()
 })
 

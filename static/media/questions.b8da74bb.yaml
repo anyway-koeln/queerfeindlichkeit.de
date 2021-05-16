@@ -5,7 +5,7 @@ questions:
     description:
       de: |
         Wähl auf der Karte aus, wo ungefähr der Vorfall passiert ist.
-        Wir runden deine Auswahl auf einen ungenauen Bereich damit deine Privatsphäre gewart bleibt.
+        Es wird keine konkrete Adresse veröffentlicht, sondern nur ein ungenauer Bereich (zb: Stadt/Kommune).
     input:
       type: geo
       required: true
@@ -14,7 +14,7 @@ questions:
       de: Was ist der Ort des Geschehens gewesen?
     input:
       type: choice
-      # required: true
+      required: true
       write_in: true
       options:
         home:
@@ -54,18 +54,24 @@ questions:
       de: Wie viele Personen waren von dem Vorfall betroffen?
     input:
       type: number
+      required: true
+      min: 0
+  type_of_offenders:
+    question:
+      de: Wer waren die Täter:innen?
+    description:
+      de: |
+        Bitte führe hier alle Personengruppen auf, die als Täter:innen beteiligt waren – es können auch gesamte Institutionen sein.
+        z.B. Schule (Lehrer:in, Mitschüler:in, Sozialarbeiter:in, etc), Sportverein (Trainer:in, Mitspieler:in, Schiedsrichter:in ...), Familie (Vater, Mutter, Geschwister, Oma, Opa...) etc.
+    input:
+      type: short_text
+      required: true
   how_many_offenders:
     question:
       de: Wie viele Täter:innen gab es?
     input:
       type: number
-  type_of_offenders:
-    question:
-      de: Wer waren die Täter:innen?
-    description:
-      de: Bitte führe hier alle Personengruppen auf, die als Täter:innen beteiligt waren, z.B. Schule (Lehrer:in, Mitschüler:in, Sozialarbeiter:in, etc), Sportverein (Trainer:in, Mitspieler:in, Schiedsrichter:in ...), Familie (Vater, Mutter, Geschwister, Oma, Opa...) etc.
-    input:
-      type: short_text
+      required: true
   length_of_violence:
     question:
       de: Wie lange dauerte die Tat?
@@ -73,17 +79,23 @@ questions:
       de: Eine Tat definiert sich dadurch, dass der Ort und die Täter:innen dieselben sind. Eine Tat kann sich einmalig (z.B. Angriff auf der Straße) ereignen oder über eine längere Zeit andauern (z.B. Mobbing in der Schule)
     input:
       type: choice
+      required: true
       options:
         once:
-          de: einmalig
+          de:
+            title: einmalig
         days:
-          de: mehrere Tage
+          de:
+            title: mehrere Tage
         weeks:
-          de: mehere Wochen
+          de:
+            title: mehere Wochen
         months:
-          de: mehrere Monate
+          de:
+            title: mehrere Monate
         years:
-          de: mehrere Jahre
+          de:
+            title: mehrere Jahre
   type_of_violence:
     question:
       de: Welche Arten von Gewalt kamen zur Anwendung?
@@ -91,7 +103,7 @@ questions:
       de: Du kannst mehrere Gewaltformen ankreuzen.
     input:
       type: choice
-      # required: true
+      required: true
       multiple: true
       write_in: true
       options:
@@ -124,21 +136,24 @@ questions:
       de: Hier kannst du den Vorfall mit deinen Worten beschreiben. Du kannst sehr gern ausführlich und detailliert sein. Bitte führe, wenn möglich, auch auf, was es für Konsequenzen gab, z.B. für Täter:innen. Namen von Personen und Institutionen werden im Nachhinein anonymisiert.
     input:
       type: long_text
+      required: true
   where_reported:
     question:
       de: Wo hast du den Vorfall gemeldet?
     input:
       type: choice
+      required: true
       write_in: true
       options:
         nowhere:
           de: Nirgends gemeldet
         just_talked:
           de:
-            title: Nein, aber mit anderen Personen darüber geredet
+            title: Nirgends, aber mit einer anderen Person darüber geredet
             description: (z.B. Freunde, Familie, Bekannte)
         police:
-          de: Bei der Polizei
+          de:
+            title: Bei der Polizei
         state_authority:
           de:
             title: Bei einer Behörde
@@ -156,7 +171,8 @@ questions:
             title: Bei Opferhilfen
             description: (z.B. Opferberatung, Überfalltelefon, Anti-Gewalt-Stellen)
         owner:
-          de: Eigentümer:in / Mitarbeiter:innen der Einrichtung
+          de:
+            title: Eigentümer:in / Mitarbeiter:innen der Einrichtung
   age:
     question:
       de: Wie alt warst du zur Tat bzw. zum Beginn der Tat?
@@ -164,6 +180,7 @@ questions:
       de: Schätze, wenn du es nicht genau weißt.
     input:
       type: number
+      required: true
   when_happened:
     question:
       de: Wann war die Tat?
@@ -171,96 +188,115 @@ questions:
       de: Schätze, wenn du es nicht genau weißt.
     input:
       type: date
+      required: true
   mental_stress:
     question:
       de: Wie sehr hat dich der Vorfall belastet?
     input:
       type: choice
+      required: true
       options:
         _-1:
-          de: Weiß nicht
+          de:
+            title: Weiß nicht
         _0:
-          de: Sehr wenig
+          de:
+            title: Sehr wenig
         _0.25:
-          de: Wenig
+          de:
+            title: Wenig
         _0.5:
-          de: Mittelmäßig
+          de:
+            title: Mittelmäßig
         _0.75:
-          de: Stark
+          de:
+            title: Stark
         _1.0:
-          de: Sehr stark
+          de:
+            title: Sehr stark
   sexual_orientation:
     question:
-      de: Sexuelle Orientierung/Identität
+      de: Welche sexuell-romantische Orientierung hast du?
     description:
       de: In den nächsten drei Fragen geht es um deine Orientierung/Identität.
     input:
       type: choice
-      multiple: true
+      required: true
       write_in: true
       options:
-        homo:
+        lesbian:
           de:
-            title: homosexuell
-            description: (lesbisch, schwul)
+            title: lesbisch
+        gay:
+          de:
+            title: schwul
         bi:
           de:
-            title: bisexuell
-            description: (bi+, pansexuell, bicurious, …)
+            title: bi
+        pan:
+          de:
+            title: pan
+        queer:
+          de:
+            title: queer
+        hetero:
+          de:
+            title: heterosexuell
         a:
           de:
             title: a_sexuell
             description: (asexuell, nonssexuell, lithsexuell, Novosexualität, Omnisexualität…)
-        hetero:
-          de: heterosexuell
-  romantic_orientation:
-    question:
-      de: Romatische Orientierung/Identität
-    input:
-      type: choice
-      multiple: true
-      write_in: true
-      options:
-        homo:
+        dunno:
           de:
-            title: homoromantisch
-            description: (lesbisch, schwul, Same Gender Loving, …)
-        bi:
-          de:
-            title: biromantisch
-            description: (panromantisch, Omniromantik, …)
-        a:
-          de:
-            title: a_romantisch
-            description: (aro, nonromantisch, aromantic, nonromantic, lithromantisch, …)
-        hetero:
-          de: heteroromantisch
+            title: Ich weiß es nicht.
   gender_identity:
     question:
       de: Geschlechtsidentität
     input:
       type: choice
-      multiple: true
+      required: true
+      multiple: false
       write_in: true
       options:
-        cis:
+        w:
           de:
-            title: cis
-            description: |
-              Cis wird benutzt, um auszudrücken, dass eine Person sich mit dem Geschlecht identifiziert, dem sie bei der Geburt zugewiesen wurde. (Quelle: Queer Lexikon)
+            title: Frau
+        m:
+          de:
+            title: Mann
         non_binary:
           de:
             title: nicht-binär
             description: (nicht-binär, weder*noch, genderqueer, genderfluid, gender nonconforming, gendervariant, gender-gleichgültig, greygender, demigender, multigender, bigender…)
-        trans:
-          de: trans*
         inter:
-          de: inter*
+          de:
+            title: Divers (bzw. inter*)
+            description: Falls dies als Identität zutrifft.
+        dunno:
+          de:
+            title: Ich Weiß es nicht.
+  trans:
+    question:
+      de: Bist du trans*?
+    input:
+      type: choice
+      required: true
+      options:
+        yes:
+          de:
+            title: Ja
+        no:
+          de:
+            title: Nein
+        dunno:
+          de:
+            title: Ich weiß es nicht.
   migration_background:
     question:
       de: Hast du Migrationshintergrund?
     input:
       type: choice
+      required: true
       options:
         yes:
           de: Ja

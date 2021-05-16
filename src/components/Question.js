@@ -14,8 +14,11 @@ const ABC = abc.toUpperCase().split('')
 abc = abc.split('')
 const keys2listen = ['Escape', 'Enter', ...abc, ...ABC]
 
-function Question({ fluentByObject, getString, _id, question, description, input, defaultValue: defaultValueObject, onSubmit }) {
+function Question({ fluentByObject, getString, _id, question, description, input = {}, defaultValue: defaultValueObject, onSubmit }) {
   const inputRef = useRef()
+  const [hasValue, setHasValue] = useState(false)
+
+  input.required = false
 
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
   let firstDefaultValue = [...defaultValue]
@@ -38,7 +41,22 @@ function Question({ fluentByObject, getString, _id, question, description, input
 
   const [writeInIsActive, setWriteInIsActive] = useState(false)
 
-  let hasValue = computeHasValue(value)
+  let niceValue = value
+  if (input.type === 'number') {
+    niceValue = parseFloat([...value][0])
+  } else if (input.type === 'short_text' || input.type === 'long_text') {
+    niceValue = [...value][0] + ''
+  } else if (input.type === 'choice') {
+    niceValue = [...value]
+  }
+
+  useEffect(() => {
+    const hasValueNew = computeHasValue(niceValue, {
+      min: (typeof input.min === 'number' ? input.min : -Infinity),
+      max: (typeof input.max === 'number' ? input.max : Infinity)
+    })
+    setHasValue(hasValueNew)
+  }, [niceValue, input.type, input.min, input.max, setHasValue])
 
   useKeyPress(keys2listen, event => {
     if (event.key === 'Escape') {
@@ -105,19 +123,29 @@ function Question({ fluentByObject, getString, _id, question, description, input
   })
 
   const storeValue = useCallback(event => {
-    let newValue = event.target.value
+    const newValueSet = new Set()
+    newValueSet.add(event.target.value)
+    setValueBoth(newValueSet)
+  }, [setValueBoth])
 
-    if (input.type === 'number') {
-      newValue = parseFloat(newValue)
-      if (isNaN(newValue)) {
-        newValue = null
+  const min = !!input ? input.min || -Infinity : -Infinity
+  const max = !!input ? input.max || Infinity : Infinity
+  const storeNumberValue = useCallback(event => {
+    let newValue = parseFloat(event.target.value)
+    if (isNaN(newValue)) {
+      newValue = null
+    } else {
+      if (typeof min === 'number' && newValue < min) {
+        newValue = min
+      } else if (typeof max === 'number' && newValue > max) {
+        newValue = max
       }
     }
 
     const newValueSet = new Set()
     newValueSet.add(newValue)
     setValueBoth(newValueSet)
-  }, [setValueBoth, input.type])
+  }, [setValueBoth, min, max])
 
   const storeGeoValue = useCallback(value => {
     const newValueSet = new Set()
@@ -212,9 +240,9 @@ function Question({ fluentByObject, getString, _id, question, description, input
 
   // auto focus input field
   useEffect(() => {
-    if (input.type !== 'choice' && !!inputRef && !!inputRef.current && !hasValue) {
-      inputRef.current.focus()
-    }
+    // if (input.type !== 'choice' && !!inputRef && !!inputRef.current && !hasValue) {
+    //   inputRef.current.focus()
+    // }
   }, [input.type, inputRef, hasValue])
 
   // do nothing if no question supplied
@@ -224,7 +252,7 @@ function Question({ fluentByObject, getString, _id, question, description, input
 
   let input_component = null
   if (input.type === 'number') {
-    input_component = <input ref={inputRef} type="number" placeholder={getString('placeholder_number')} min={0} onChange={storeValue} defaultValue={firstDefaultValue} />
+    input_component = <input ref={inputRef} type="number" placeholder={getString('placeholder_number')} min={input.min || -Infinity} max={input.max || Infinity} onChange={storeNumberValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'short_text' || input.type === 'date') { // TODO: date sollte ein eigenes echtes input sein, das direkt überprüft, ob es ein echtes Datum ist.
     input_component = <input ref={inputRef} type="text" placeholder={getString('placeholder_short_text')} onChange={storeValue} defaultValue={firstDefaultValue} />
   } else if (input.type === 'long_text') {
@@ -305,9 +333,14 @@ function Question({ fluentByObject, getString, _id, question, description, input
       }
     </>
   } else if (input.type === 'geo') {
+    console.log('value', value)
     input_component = <>
       <GeoInput onChange={storeGeoValue} defaultValue={firstDefaultValue} />
-      <p>{value}</p>
+      {
+        value.size > 0
+        ? <p><Localized id="label_annonymized_coordinates" vars={{ latLngText: [...value][0] }} /></p>
+        : null
+      }
     </>
   }
 

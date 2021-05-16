@@ -57,7 +57,8 @@
   bottom: 0;
   left: 0;
 
-  background-color: var(--card, white);
-  color: var(--on-card, black);
+  background-color: var(--surface, white);
+  color: var(--on-surface, black);
   padding: 16px 32px;
+  text-align: center;
 }

@@ -54,10 +54,22 @@ function getValueTitle(value, options) {
 
   if (typeof thisOption === 'string' || thisOption instanceof String) {
     title = thisOption
+  } else if (typeof thisOption === 'number' || !isNaN(thisOption)) {
+    title = thisOption + ''
   } else {
     if (!!thisOption.title) {
       title = thisOption.title
     }
+  }
+
+  return title
+}
+
+function getValueTitleElement(value, options) {
+  const title = getValueTitle(value, options)
+
+  if (typeof title === 'string') {
+    return title.split('\n').map(line => <p key={line}>{line}</p>)
   }
 
   return title
@@ -95,10 +107,11 @@ function Survey() {
           .map(questionEntry => {
             let thisQuestionData = questionEntry[1]
 
-            if (
-              !!thisQuestionData.input
-              && !!thisQuestionData.input.options
-            ) {
+            if (!thisQuestionData.input) {
+              thisQuestionData.input = {}
+            }
+
+            if (!!thisQuestionData.input.options) {
               thisQuestionData.input.options = Object.entries(thisQuestionData.input.options)
                 .map(optionsEntry => ({
                   _id: optionsEntry[0],
@@ -322,12 +335,10 @@ function Survey() {
                           <div className="subtitle1">{thisQuestion.question.de}</div>
                           {
                             thisQuestion.input.multiple === true
-                              ? <p><ul>
-                                {[...answer.value].map(thisValue => <li>{getValueTitle(thisValue, thisQuestion.input.options)}</li>)}
-                              </ul></p>
-                              : getValueTitle([...answer.value][0], thisQuestion.input.options)
-                                .split('\n')
-                                .map(line => <p key={line}>{line}</p>)
+                              ? <div><ul>
+                                {[...answer.value].map(thisValue => <li>{getValueTitleElement(thisValue, thisQuestion.input.options)}</li>)}
+                              </ul></div>
+                              : getValueTitleElement([...answer.value][0], thisQuestion.input.options)
                           }
                         </div>
                       })

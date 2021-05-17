@@ -18,8 +18,6 @@ function Question({ fluentByObject, getString, _id, question, description, input
   const inputRef = useRef()
   const [hasValue, setHasValue] = useState(false)
 
-  input.required = false
-
   const defaultValue = !!defaultValueObject ? defaultValueObject.value : new Set()
   let firstDefaultValue = [...defaultValue]
   if (firstDefaultValue.length > 0) {

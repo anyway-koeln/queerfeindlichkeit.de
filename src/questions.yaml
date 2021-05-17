@@ -183,9 +183,11 @@ questions:
       required: true
   when_happened:
     question:
-      de: Wann war die Tat?
+      de: Zu welchem Zeitpunkt war die Tat?
     description:
-      de: Schätze, wenn du es nicht genau weißt.
+      de: |
+        (Tag. Monat. Jahr)
+        Geb es so genau an wie du weißt, schätze ansonsten.
     input:
       type: date
       required: true

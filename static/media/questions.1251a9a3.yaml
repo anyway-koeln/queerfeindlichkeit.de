@@ -306,6 +306,15 @@ questions:
           de: Nein
         dunno:
           de: Weiß nicht
+  email:
+    question:
+      de: Dürfen wir Dir per Email Nachfragen stellen?
+    description:
+      de: |
+        Diese Frage ist ausdrücklich freiwillig!
+        Deine Email-Adresse wird nicht veröffentlicht und nach evtl. Emails mit dir gelöscht.
+    input:
+      type: short_text
   feedback:
     question:
       de: Wie findest du den Fragebogen?

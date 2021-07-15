@@ -87,6 +87,9 @@ function Survey() {
       setUploaded(true)
     },
     onError(error) {
+      if (!!window.umami) {
+        window.umami.trackEvent('Error: Submit-Failed')
+      }
       console.error(error)
     }
   })
@@ -165,6 +168,12 @@ function Survey() {
       setAnswers(answers)
     }
     if (currentQuestionsIndex <= questions.length) {
+      if (!!window.umami) {
+        window.umami.trackEvent('Q-Index: ' + currentQuestionsIndex) // question index
+        if (!!data && !!data._id) {
+          window.umami.trackEvent('A-ID: ' + data._id) // answer id
+        }
+      }
       setCurrentQuestionsIndex(currentQuestionsIndex + 1)
     }
   }, [setAnswers, answers, setCurrentQuestionsIndex, currentQuestionsIndex, questions.length])
@@ -207,6 +216,10 @@ function Survey() {
   })
 
   const handleSendData = useCallback(() => {
+    if (!!window.umami) {
+      window.umami.trackEvent('Submitting-Incident')
+    }
+
     let answersForSending = Object.values(answers)
       .filter(answer => answer._id !== null && answer.value !== null)
 
@@ -240,6 +253,10 @@ function Survey() {
   }, [answers, questionsById, submitIncident])
 
   const handleDownloadData = useCallback(() => {
+    if (!!window.umami) {
+      window.umami.trackEvent('Downloading-Incident')
+    }
+
     let answersForDownload = Object.values(answers)
       .filter(answer => answer._id !== null && answer.value !== null)
 

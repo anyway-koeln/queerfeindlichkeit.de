@@ -25,6 +25,7 @@ const Survey = React.lazy(() => import('./Survey.js'))
 const Blog = React.lazy(() => import('./Blog.js'))
 const Article = React.lazy(() => import('./Article.js'))
 const Story = React.lazy(() => import('./Story.js'))
+const Map = React.lazy(() => import('./Map.js'))
 
 const meta = {
   language: 'de',
@@ -126,6 +127,7 @@ function App() {
                 <Route path="/story" children={<Redirect to="/" />} />
                 <Route path="/blog/:id" children={<SuspenseWrapper children={<Article />} />} />
                 <Route path="/blog" children={<SuspenseWrapper children={<Blog />} />} />
+                <Route path="/map" exact={true} children={<SuspenseWrapper children={<Map />} />} />
                 <Route path="/" exact={true} children={<SuspenseWrapper children={<LaunchHome />} />} />
                 <Route path="*" children={<Redirect to="/" />} />
               </Switch>

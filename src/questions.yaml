@@ -62,7 +62,7 @@ questions:
     description:
       de: |
         Bitte führe hier alle Personengruppen auf, die als Täter:innen beteiligt waren – es können auch gesamte Institutionen sein.
-        z.B. Schule (Lehrer:in, Mitschüler:in, Sozialarbeiter:in, etc), Sportverein (Trainer:in, Mitspieler:in, Schiedsrichter:in ...), Familie (Vater, Mutter, Geschwister, Oma, Opa...) etc.
+        Beispiele: Schule (Lehrer:in, Mitschüler:in, Sozialarbeiter:in, etc), Sportverein (Trainer:in, Mitspieler:in, Schiedsrichter:in ...), Familie (Vater, Mutter, Geschwister, Oma, Opa...) etc.
     input:
       type: short_text
       required: true
@@ -74,9 +74,9 @@ questions:
       required: true
   length_of_violence:
     question:
-      de: Wie lange dauerte die Tat?
+      de: Wie lange dauerte der Vorfall?
     description:
-      de: Eine Tat definiert sich dadurch, dass der Ort und die Täter:innen dieselben sind. Eine Tat kann sich einmalig (z.B. Angriff auf der Straße) ereignen oder über eine längere Zeit andauern (z.B. Mobbing in der Schule)
+      de: Ein Vorfall definiert sich dadurch, dass der Ort und die Täter:innen dieselben sind. Ein Vorfall kann sich einmalig (z.B. Angriff auf der Straße) ereignen oder über eine längere Zeit andauern (z.B. wiederholtes Mobbing in der Schule).
     input:
       type: choice
       required: true
@@ -110,30 +110,33 @@ questions:
         verbal:
           de:
             title: Verbale Gewalt
-            description: (Beschimpfung, Beleidigung, Verleumdung, ...)
+            description: (z.B. Beschimpfung, Beleidigung, Verleumdung, …)
         psychological:
           de:
             title: Psychische Gewalt
-            description: (Ausgrenzung, Drohen, unter Druck setzen, Mobbing, Schikane, Kontaktverbote zu bestimmten Personen, Isolation, etc.)
+            description: (z.B. Ausgrenzung, Drohen, unter Druck setzen, Mobbing, Schikane, Kontaktverbote zu bestimmten Personen, Isolation, …)
         physical:
-          de: Körperliche Gewalt
+          de:
+            title: Körperliche Gewalt
+            description: (z.B. anspucken, Haare ziehen, festhalten, schubsen, schlagen, würgen, …)
         economic:
           de:
             title: Ökonomische Gewalt
-            description: (z.B. Taschengeldentzug, Handy weggenommen)
+            description: (z.B. Taschengeldentzug, Handy weggenommen, …)
         sexual:
           de:
             title: Sexualisierte Gewalt
-            description: (Nötigung zu sexuellen Handlungen etc.)
+            description: (z.B. Nötigung zu sexuellen Handlungen, …)
         structural:
           de:
             title: Strukturelle Gewalt
-            description: (Strukturelle Gewalt hindert Individuen daran, ihre Potenziale und Möglichkeiten voll zu entfalten. Sie wird nicht direkt von einem:r Täter:in ausgeübt, sondern hat systemischen Charakter, z.B. Wissen über sexuelle Orientierung geschlecht. Identität nicht in der Schule vermitteln, fehlende Toiletten für das 3. Geschlecht, Mangel an geschlechterdiverse Sprache)
+            description: |
+              Strukturelle Gewalt hindert Individuen daran, ihre Potenziale und Möglichkeiten voll zu entfalten. Sie wird nicht direkt von einem:r Täter:in ausgeübt, sondern hat systemischen Charakter. (z.B.: In der Schule wurde kein Wissen über sexuelle Orientierung oder geschlechtliche Identität vermittelt, Toiletten für das 3. Geschlecht fehlten, Mangel an geschlechtssensibler Sprache, …)
   what_happened:
     question:
       de: Was ist dir genau passiert und wie hast du dich dabei gefühlt?
     description:
-      de: Hier kannst du den Vorfall mit deinen Worten beschreiben. Du kannst sehr gern ausführlich und detailliert sein. Bitte führe, wenn möglich, auch auf, was es für Konsequenzen gab, z.B. für Täter:innen. Namen von Personen und Institutionen werden im Nachhinein anonymisiert.
+      de: Hier kannst du den Vorfall mit deinen Worten beschreiben. Du kannst sehr gern ausführlich und detailliert sein. Bitte führe — wenn möglich — auch auf, was es für Konsequenzen gab, z.B. für Täter:innen. Namen von Personen und Institutionen werden im Nachhinein anonymisiert.
     input:
       type: long_text
       required: true
@@ -160,7 +163,7 @@ questions:
             description: (z.B. Jugendamt, Schulamt, Antidiskriminierungsstelle)
         pedagogical_staff:
           de:
-            title: Bei pädagogischen oder betreuenden Personal
+            title: Bei pädagogischem oder betreuendem Personal
             description: (z.B. Lehrer:in, Sozialarbeiter:in, Trainer:in)
         work:
           de:
@@ -183,11 +186,14 @@ questions:
       required: true
   when_happened:
     question:
-      de: Zu welchem Zeitpunkt war die Tat?
+      de: Wann war der Vorfall?
     description:
       de: |
-        (Tag. Monat. Jahr)
+        Wenn du das konkrete Datum kennst, dann gib es gern an — aber auch das Jahr ist ausreichend.
+        Wenn der Vorfall eine längere Zeit dauerte, dann gib bitte an, wann es begonnen hat.
+
         Geb es so genau an wie du weißt, schätze ansonsten.
+        (Tag. Monat. Jahr)
     input:
       type: date
       required: true
@@ -220,7 +226,9 @@ questions:
     question:
       de: Welche sexuell-romantische Orientierung hast du?
     description:
-      de: In den nächsten drei Fragen geht es um deine Orientierung/Identität.
+      de: |
+        Fast geschafft! In den nächsten drei Fragen geht es um deine Identität.
+        Wähle das Label aus, mit welchem du dich am stärksten identifizierst.
     input:
       type: choice
       required: true
@@ -247,7 +255,9 @@ questions:
         a:
           de:
             title: a_sexuell
-            description: (asexuell, nonssexuell, lithsexuell, Novosexualität, Omnisexualität…)
+        a_romantic:
+          de:
+            title: a_romantisch
         dunno:
           de:
             title: Ich weiß es nicht.
@@ -276,7 +286,7 @@ questions:
             description: Falls dies als Identität zutrifft.
         dunno:
           de:
-            title: Ich Weiß es nicht.
+            title: Ich weiß es nicht.
   trans:
     question:
       de: Bist du trans*?
@@ -308,17 +318,17 @@ questions:
           de: Weiß nicht
   email:
     question:
-      de: Dürfen wir Dir per Email Nachfragen stellen?
+      de: Dürfen wir Dir per E-Mail Nachfragen stellen?
     description:
       de: |
         Diese Frage ist ausdrücklich freiwillig!
-        Deine Email-Adresse wird nicht veröffentlicht und nach evtl. Emails mit dir gelöscht.
+        Deine E-Mail-Adresse wird nicht veröffentlicht und nach evtl. E-Mails mit dir gelöscht.
     input:
       type: short_text
   feedback:
     question:
-      de: Wie findest du den Fragebogen?
+      de: Möchtest du noch etwas mitteilen?
     description:
-      de: Gibt es etwas, was wir nicht gefragt haben, du aber gern mitteilen wolltest? Waren einige Fragen für dich unverständlich oder wusstest du manchmal nicht, was du tun solltest? Hier kannst du uns Feedback zum Fragebogen geben. Dieses schätzen wir sehr, weil der Fragebogen ein Testlauf für unser Projekt ist.
+      de: Gibt es etwas, was wir nicht gefragt haben, du aber gern mitteilen wolltest? Waren einige Fragen für dich unverständlich oder wusstest du manchmal nicht, was du tun solltest? Hier kannst du uns Feedback zum Fragebogen geben.
     input:
       type: long_text

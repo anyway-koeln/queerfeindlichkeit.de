@@ -306,8 +306,8 @@ function Survey() {
             ? <>
                 <h3>Vorfall melden</h3>
                 <p>Hier kannst du einen queerfeindlichen Vorfall melden.</p>
-                <p>Deine Daten dienen lediglich zur statistischen Auswertung. Sie führen nicht zu einer Anzeige bei der Polizei. Wir speichern deine Daten anonymiesiert.</p>
-                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden. Oder uns bei Instagram eine Nachricht schichen: <a href="https://instagram.com/queerfeindlichkeit" target="_blank" rel="noreferrer">@queerfeindlichkeit</a></p>
+                <p>Deine Daten dienen lediglich zur statistischen Auswertung. Sie führen nicht zu einer Anzeige bei der Polizei. Wir speichern deine Daten anonymisiert.</p>
+                <p>Bei Fragen kannst du dich an <a href="mailto:info@queerfeindlichkeit.de" target="_blank" rel="noreferrer">info@queerfeindlichkeit.de</a> wenden oder uns bei Instagram eine Nachricht schicken: <a href="https://instagram.com/queerfeindlichkeit" target="_blank" rel="noreferrer">@queerfeindlichkeit</a></p>
                 <IonButton size="default" onClick={gotoFirstQuestion}><Localized id="start_survey" /></IonButton>
             </>
             : (
@@ -340,8 +340,9 @@ function Survey() {
                   </>
                   : <>
                     <h3>Deine Angaben</h3>
-                    <p>Hier kannst du nochmal über deine Angaben drüber schauen.<br />Geh gerne zurück um etwas zu koorigieren.</p>
+                    <p>Hier kannst du nochmal über deine Angaben drüber schauen.<br />Geh gerne zurück, um etwas zu korrigieren.</p>
                     <p>Wenn du zufrieden bist, klick unten auf <strong>„Vorfall eintragen”</strong>.</p>
+                    <p>Er wird in den nächsten Tagen von unseren Ehrenamtlichen gesichtet und veröffentlicht.</p>
                     <p>Deine Daten kannst du dir unter <strong>„Daten runterladen”</strong>abspeichern.</p>
                     <hr />
                     {

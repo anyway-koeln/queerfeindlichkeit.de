@@ -4,9 +4,6 @@ export default function computeHasValue(value, options) {
     max = Infinity
   } = options || {}
 
-  console.log('value', value)
-  console.log('options', options)
-
   let hasValue = false
   if (typeof value === 'object' && value instanceof Set && value.size > 0) {
     hasValue = true

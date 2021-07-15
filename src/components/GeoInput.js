@@ -4,7 +4,7 @@ import { IonButton } from '@ionic/react'
 
 import { withLocalization } from './fluent/Localized.js'
 
-import { MapContainer, TileLayer, Circle, Rectangle, useMapEvent, useMap } from 'react-leaflet'
+import { Map, TileLayer, Circle, Rectangle } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
@@ -16,11 +16,11 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
-function MapScale() {
-  const map = useMap()
-
+function MapScale({ map }) {
   useEffect(() => {
-    window.L.control.scale().addTo(map)
+    if (!!map) {
+      window.L.control.scale().addTo(map)
+    }
   }, [map])
 
   return null
@@ -83,18 +83,6 @@ function MapZoom({ map }) {
   </div>
 }
 
-function MapEventHandler({ onMap, onClick }) {
-  const map = useMap()
-
-  useEffect(() => {
-    onMap(map)
-  }, [onMap, map])
-
-  useMapEvent('click', onClick)
-
-  return null
-}
-
 const geoPrecision = 100
 const geoShift = 0.5 / geoPrecision
 
@@ -155,18 +143,20 @@ function GeoInput({ onChange, defaultValue }) {
   }, [saveMapPos])
 
   const handleMap = useCallback((newMap) => {
-    setMap(newMap)
+    setMap(newMap.target)
   }, [setMap])
 
   return <div className={classes.mapWrapper}>
     <MapSearch map={map} onChange={saveMapPos}/>
     <MapZoom map={map} />
-    <MapContainer
+    <Map
       className={classes.map}
       center={[51.2964955, 9.9019876]}
       zoom={5.5}
       scrollWheelZoom={false}
       zoomControl={false}
+      whenReady={handleMap}
+      onClick={handleMapClick}
     >
       {/* <TileLayer
         attribution='© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -191,17 +181,16 @@ function GeoInput({ onChange, defaultValue }) {
 
       {
         preciseMarkerPos.lat !== markerPos.lat && preciseMarkerPos.lng !== markerPos.lng
-        ? <Circle center={preciseMarkerPos} radius={5} pathOptions={{ fillOpacity: 1, color: 'var(--primary-dark, black)' }} />
+        ? <Circle center={preciseMarkerPos} radius={5} {...{ fillOpacity: 1, color: 'var(--primary-dark, black)' }} />
         : null
       }
       {
         markerPos.lat !== 0 && markerPos.lng !== 0
-        ? <Rectangle bounds={rectangle} pathOptions={{ fillColor: 'var(--primary, black)', color: 'var(--primary-dark, black)', fillOpacity: 0.3, weight: 5, lineCap: 'square', lineJoin: 'square' }} />
+        ? <Rectangle bounds={rectangle} {...{ fillColor: 'var(--primary, black)', color: 'var(--primary-dark, black)', fillOpacity: 0.3, weight: 5, lineCap: 'square', lineJoin: 'square' }} />
         : null
       }
-      <MapEventHandler onMap={handleMap} onClick={handleMapClick} />
-      <MapScale />
-    </MapContainer>
+      <MapScale map={map} />
+    </Map>
   </div>
 }
 

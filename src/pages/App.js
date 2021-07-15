@@ -115,26 +115,26 @@ function App() {
 
       {
         vorfallMeldenIsOpen
-        ? <SuspenseWrapper children={<Survey />} />
-        : <>
-          <Header />
+          ? <SuspenseWrapper children={<Survey />} />
+          : <>
+            <Header />
 
-          <main id="main">
-            <Switch>
-              <Route path="/survey" children={<Redirect to="/vorfall-melden" />} />
-              <Route path="/story/:id" children={<SuspenseWrapper children={<Story />} />} />
-              <Route path="/story" children={<Redirect to="/" />} />
-              <Route path="/blog/:id" children={<SuspenseWrapper children={<Article />} />} />
-              <Route path="/blog" children={<SuspenseWrapper children={<Blog />} />} />
-              <Route path="/" exact={true} children={<SuspenseWrapper children={<LaunchHome />} />} />
-              <Route path="*" children={<Redirect to="/" />} />
-            </Switch>
-          </main>
+            <main id="main">
+              <Switch>
+                <Route path="/survey" children={<Redirect to="/vorfall-melden" />} />
+                <Route path="/story/:id" children={<SuspenseWrapper children={<Story />} />} />
+                <Route path="/story" children={<Redirect to="/" />} />
+                <Route path="/blog/:id" children={<SuspenseWrapper children={<Article />} />} />
+                <Route path="/blog" children={<SuspenseWrapper children={<Blog />} />} />
+                <Route path="/" exact={true} children={<SuspenseWrapper children={<LaunchHome />} />} />
+                <Route path="*" children={<Redirect to="/" />} />
+              </Switch>
+            </main>
 
-          <Rainbow style={{ marginTop: '128px' }} />
+            <Rainbow style={{ marginTop: '128px' }} />
 
-          <Footer />
-        </>
+            <Footer />
+          </>
       }
     </>
   )

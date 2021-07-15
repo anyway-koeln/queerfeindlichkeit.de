@@ -5,7 +5,7 @@ loading_content = Lade Inhalte…
 start_survey = Los gehts
 
 prev = Zurück
-next = Vor
+next = Weiter
 
 uploading = Lade hoch...
 error_while_uploading = Fehler :( Bitte versuch es erneut
